@@ -37,6 +37,7 @@ var sound_zt = preload("res://sounds/Curse zt.ogg")
 var sound_switch = preload("res://sounds/Curse switch.ogg")
 
 func _ready():
+	place_loot(160)
 	update_avatars(false)
 	$SoulSwitchTimer.set_wait_time(30)
 	$SoulSwitchTimer.start()
@@ -111,11 +112,15 @@ func _on_SoulSwitchTimer_timeout():
 	emit_signal("invert_screen_signal", false)
 	pass # Replace with function body.
 
+func place_loot(number_of_loot):
+	for	i in number_of_loot:
+		var collectible = Collectible.instance()
+		add_child(collectible)
 
-func _on_LootDropTimer_timeout():
-	var collectible = Collectible.instance()
-	add_child(collectible)
-	pass # Replace with function body.
+#func _on_LootDropTimer_timeout():
+#	var collectible = Collectible.instance()
+	#add_child(collectible)
+	#pass # Replace with function body.
 
 func updateScoreUI():
 	$Cam/CanvasLayer/Interface.get_node("Player1").set_text(str(score.player1))

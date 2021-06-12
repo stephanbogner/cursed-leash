@@ -8,8 +8,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var randomX = randi() % 1000
-	var randomY = randi() % 1000
+	var randomX = randi() % 2300 * 2 - 2300
+	var randomY = randi() % 2300 * 2 - 2300
 	print(randomX, randomY)
 	self.set_global_position(Vector2(randomX, randomY))
 
