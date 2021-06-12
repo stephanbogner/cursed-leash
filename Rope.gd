@@ -8,19 +8,21 @@ var rope_close_tolerance := 4.0
 onready var rope_start_piece = $RopeStartPiece
 onready var rope_end_piece = $RopeEndPiece
 
-func spwan_rope(start_pos:Vector2, end_pos:Vector2):
-	rope_start_piece.global_position = start_pos
-	rope_end_piece.global_position = end_pos
-	start_pos = rope_start_piece.get_node("C/J").global_position
-	end_pos = rope_end_piece.get_node("C/J").global_position
+func spawn(object1:Object, object2:Object):
+	rope_start_piece.global_position = object1.global_position
+	rope_end_piece.global_position = object2.global_position
+	var start_pos = rope_start_piece.get_node("C/J").global_position
+	var end_pos = rope_end_piece.get_node("C/J").global_position
 
 	var distance = start_pos.distance_to(end_pos)
 	var pieces_amount = round(distance/piece_length)
 	var spawn_angle = (end_pos - start_pos).angle() - PI/2
 	
-	create_rope(pieces_amount, rope_start_piece, end_pos, spawn_angle)
+	object1.get_node("C/J").node_b = rope_start_piece.get_path()
+	object2.get_node("C/J").node_b = rope_end_piece.get_path()
+	create(pieces_amount, rope_start_piece, end_pos, spawn_angle)
 
-func create_rope(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:float) -> void:
+func create(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:float) -> void:
 	for i in pieces_amount:
 		print(i)
 		parent = add_piece(parent, i, spawn_angle)

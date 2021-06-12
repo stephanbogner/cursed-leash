@@ -8,8 +8,11 @@ height = 28.1328
 
 [node name="Dog" type="KinematicBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="C" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="J" type="PinJoint2D" parent="C"]
+node_a = NodePath("../..")
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -9.53674e-07 )
