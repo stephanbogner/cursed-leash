@@ -11,6 +11,7 @@ hframes = 3
 vframes = 3
 
 [node name="Top Center" type="Sprite" parent="."]
+position = Vector2( -1.78186, -1.7818 )
 texture = ExtResource( 1 )
 hframes = 3
 vframes = 3
