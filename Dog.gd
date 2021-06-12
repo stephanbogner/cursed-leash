@@ -5,10 +5,9 @@ const ACC = 60
 const MAXSPEED = 300
 var motion = Vector2(0, 0)
 
-#onready var dog = get_node("Dog")
-
-func _on_ready():
-	self.set_weight(7.5)
+func _ready():
+#	self.set_mass(10)
+	pass
 
 func _physics_process(delta):
 	if Input.is_action_pressed("dog_up"):

@@ -5,8 +5,10 @@ const ACC = 30
 const MAXSPEED = 200
 var motion = Vector2()
 
-func _on_ready():
-	self.set_weight(70)
+func _ready():
+	#self.set_weight(10)
+	self.set_mass(10)
+	pass
 
 func _physics_process(delta):
 	if Input.is_action_pressed("person_up"):

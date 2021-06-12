@@ -16,7 +16,7 @@ shape = SubResource( 1 )
 [node name="J" type="PinJoint2D" parent="C"]
 node_a = NodePath("../..")
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="C/J"]
 position = Vector2( 0, -9.53674e-07 )
 scale = Vector2( 1.91861, 1.91861 )
 texture = ExtResource( 2 )
