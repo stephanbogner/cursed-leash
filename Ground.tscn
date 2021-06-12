@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://textures/Grass.tres" type="TileSet" id=1]
+[ext_resource path="res://textures/Asphalt.tres" type="TileSet" id=2]
+
+[node name="Ground" type="Node2D"]
+
+[node name="Asphalt" type="TileMap" parent="."]
+mode = 2
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 466, 349 )
+cell_custom_transform = Transform2D( 466, 0, 0, 349, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
+
+[node name="Grass" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 256, 256 )
+format = 1
+tile_data = PoolIntArray( 65535, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 2, 0, 131071, 3, 0, 65536, 4, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 65540, 4, 0, 65541, 5, 0, 196607, 3, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 5, 0, 262143, 3, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 5, 0, 327679, 6, 0, 262144, 7, 0, 262145, 7, 0, 262146, 7, 0, 262147, 7, 0, 262148, 7, 0, 262149, 8, 0 )

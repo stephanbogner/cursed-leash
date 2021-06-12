@@ -23,7 +23,6 @@ func _physics_process(delta):
 		rope.pull()
 		Dog.get_node("C/reaction-zip").play()
 		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
-
 		
 	var person_position = Person.get_position()
 	var dog_position = Dog.get_position()
