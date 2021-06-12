@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://TestStage.gd" type="Script" id=1]
 [ext_resource path="res://Person.tscn" type="PackedScene" id=2]
@@ -8,6 +8,113 @@
 [ext_resource path="res://Person.gd" type="Script" id=6]
 [ext_resource path="res://ScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Ground.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Leash.png" type="Texture" id=9]
+
+[sub_resource type="Shader" id=1]
+code = "// Adapted from \"How to Limit Color Output with Shaders in Godot\"
+// By TheBuffED
+// On https://www.youtube.com/watch?v=Scrdv4oSeNw
+
+// Type of shader https://docs.godotengine.org/en/3.0/tutorials/shading/shading_language.html#shader-types
+shader_type canvas_item;
+
+// The shader strength which between 0 (not applied) and 1 (fully applied) because I want to fade the shader in and out
+// Can be changed from node via `get_material().set_shader_param(\"shaderStrength\", newValue)`
+uniform float shaderStrength = 0.0;
+
+// The colors which all colors will be mapped to, in this case the PICO8 color palette (https://lospec.com/palette-list/pico-8-secret-palette)
+// --- The color pallette ---
+uniform vec4 color_1 = vec4(0, 0, 0, 1.0);
+uniform vec4 color_2 = vec4(0.114, 0.169, 0.325, 1.0);
+uniform vec4 color_3 = vec4(0.494, 0.145, 0.325, 1.0);
+uniform vec4 color_4 = vec4(0, 0.529, 0.318, 1.0);
+uniform vec4 color_5 = vec4(0.671, 0.322, 0.212, 1.0);
+uniform vec4 color_6 = vec4(0.373, 0.341, 0.31, 1.0);
+uniform vec4 color_7 = vec4(0.761, 0.765, 0.78, 1.0);
+uniform vec4 color_8 = vec4(1, 0.945, 0.91, 1.0);
+uniform vec4 color_9 = vec4(1, 0, 0.302, 1.0);
+uniform vec4 color_10 = vec4(1, 0.639, 0, 1.0);
+uniform vec4 color_11 = vec4(1, 0.925, 0.153, 1.0);
+uniform vec4 color_12 = vec4(0, 0.894, 0.212, 1.0);
+uniform vec4 color_13 = vec4(0.161, 0.678, 1, 1.0);
+uniform vec4 color_14 = vec4(0.514, 0.463, 0.612, 1.0);
+uniform vec4 color_15 = vec4(1, 0.467, 0.659, 1.0);
+uniform vec4 color_16 = vec4(1, 0.8, 0.667, 1.0);
+uniform vec4 color_17 = vec4(0.161, 0.094, 0.078, 1.0);
+uniform vec4 color_18 = vec4(0.067, 0.114, 0.208, 1.0);
+uniform vec4 color_19 = vec4(0.259, 0.129, 0.212, 1.0);
+uniform vec4 color_20 = vec4(0.071, 0.325, 0.349, 1.0);
+uniform vec4 color_21 = vec4(0.455, 0.184, 0.161, 1.0);
+uniform vec4 color_22 = vec4(0.286, 0.2, 0.231, 1.0);
+uniform vec4 color_23 = vec4(0.635, 0.533, 0.475, 1.0);
+uniform vec4 color_24 = vec4(0.953, 0.937, 0.49, 1.0);
+uniform vec4 color_25 = vec4(0.745, 0.071, 0.314, 1.0);
+uniform vec4 color_26 = vec4(1, 0.424, 0.141, 1.0);
+uniform vec4 color_27 = vec4(0.659, 0.906, 0.18, 1.0);
+uniform vec4 color_28 = vec4(0, 0.71, 0.263, 1.0);
+uniform vec4 color_29 = vec4(0.024, 0.353, 0.71, 1.0);
+uniform vec4 color_30 = vec4(0.459, 0.275, 0.396, 1.0);
+uniform vec4 color_31 = vec4(1, 0.431, 0.349, 1.0);
+uniform vec4 color_32 = vec4(1, 0.616, 0.506, 1.0);
+
+// ---------------------------
+
+void fragment(){
+	// --- Referencing the colors ---
+	vec4 colors[32] = {color_1, color_2, color_3, color_4, color_5, color_6, color_7, color_8, color_9, color_10, color_11, color_12, color_13, color_14, color_15, color_16, color_17, color_18, color_19, color_20, color_21, color_22, color_23, color_24, color_25, color_26, color_27, color_28, color_29, color_30, color_31, color_32};
+	// ---------------------------
+	
+	vec4 current_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+	
+	float min_diff = 1000.0;
+	vec4 shader_color = vec4(0.0, 0.0, 0.0, 1.0);
+	
+	for(int i=0; i < colors.length(); i++){
+		float curr_dist = distance(colors[i], current_color);
+		if(curr_dist < min_diff){
+			min_diff = curr_dist;
+			shader_color = colors[i];
+		}
+	}
+	vec4 new_color = shader_color * shaderStrength + current_color * (1.0 - shaderStrength);
+	COLOR.rgb = new_color.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/shaderStrength = 1.0
+shader_param/color_1 = Plane( 0, 0, 0, 1 )
+shader_param/color_2 = Plane( 0.114, 0.169, 0.325, 1 )
+shader_param/color_3 = Plane( 0.494, 0.145, 0.325, 1 )
+shader_param/color_4 = Plane( 0, 0.529, 0.318, 1 )
+shader_param/color_5 = Plane( 0.671, 0.322, 0.212, 1 )
+shader_param/color_6 = Plane( 0.373, 0.341, 0.31, 1 )
+shader_param/color_7 = Plane( 0.761, 0.765, 0.78, 1 )
+shader_param/color_8 = Plane( 1, 0.945, 0.91, 1 )
+shader_param/color_9 = Plane( 1, 0, 0.302, 1 )
+shader_param/color_10 = Plane( 1, 0.639, 0, 1 )
+shader_param/color_11 = Plane( 1, 0.925, 0.153, 1 )
+shader_param/color_12 = Plane( 0, 0.894, 0.212, 1 )
+shader_param/color_13 = Plane( 0.161, 0.678, 1, 1 )
+shader_param/color_14 = Plane( 0.514, 0.463, 0.612, 1 )
+shader_param/color_15 = Plane( 1, 0.467, 0.659, 1 )
+shader_param/color_16 = Plane( 1, 0.8, 0.667, 1 )
+shader_param/color_17 = Plane( 0.161, 0.094, 0.078, 1 )
+shader_param/color_18 = Plane( 0.067, 0.114, 0.208, 1 )
+shader_param/color_19 = Plane( 0.259, 0.129, 0.212, 1 )
+shader_param/color_20 = Plane( 0.071, 0.325, 0.349, 1 )
+shader_param/color_21 = Plane( 0.455, 0.184, 0.161, 1 )
+shader_param/color_22 = Plane( 0.286, 0.2, 0.231, 1 )
+shader_param/color_23 = Plane( 0.635, 0.533, 0.475, 1 )
+shader_param/color_24 = Plane( 0.953, 0.937, 0.49, 1 )
+shader_param/color_25 = Plane( 0.745, 0.071, 0.314, 1 )
+shader_param/color_26 = Plane( 1, 0.424, 0.141, 1 )
+shader_param/color_27 = Plane( 0.659, 0.906, 0.18, 1 )
+shader_param/color_28 = Plane( 0, 0.71, 0.263, 1 )
+shader_param/color_29 = Plane( 0.024, 0.353, 0.71, 1 )
+shader_param/color_30 = Plane( 0.459, 0.275, 0.396, 1 )
+shader_param/color_31 = Plane( 1, 0.431, 0.349, 1 )
+shader_param/color_32 = Plane( 1, 0.616, 0.506, 1 )
 
 [node name="TestStage" type="Node2D"]
 script = ExtResource( 1 )
@@ -57,8 +164,14 @@ smoothing_enabled = true
 
 [node name="ScreenShake" parent="Cam" instance=ExtResource( 7 )]
 
+[node name="Shader" type="Sprite" parent="Cam"]
+material = SubResource( 2 )
+position = Vector2( 9.00704, 11.6027 )
+scale = Vector2( 629.085, 100.308 )
+texture = ExtResource( 9 )
+
 [node name="SoulSwitchTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
-[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
