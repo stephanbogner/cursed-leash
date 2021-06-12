@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TestStage.gd" type="Script" id=1]
 [ext_resource path="res://Person.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Dog.gd" type="Script" id=4]
 [ext_resource path="res://TrashCan.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Person.gd" type="Script" id=6]
+[ext_resource path="res://ScreenShake.tscn" type="PackedScene" id=7]
 
 [node name="TestStage" type="Node2D"]
 script = ExtResource( 1 )
@@ -48,3 +49,5 @@ script = null
 [node name="Cam" type="Camera2D" parent="."]
 current = true
 smoothing_enabled = true
+
+[node name="ScreenShake" parent="Cam" instance=ExtResource( 7 )]

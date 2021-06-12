@@ -21,6 +21,8 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("leash_pull"):
 		rope.pull()
+		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
+
 		
 	var person_position = Person.get_position()
 	var dog_position = Dog.get_position()
