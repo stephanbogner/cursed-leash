@@ -5,6 +5,7 @@ extends Node2D
 # Layer 3 Rope
 
 var Rope = preload("res://Rope.tscn")
+var rope
 var start_pos := Vector2(100, 100)
 var end_pos := Vector2(200, 200)
 
@@ -12,10 +13,14 @@ onready var Person = get_node("Person")
 onready var Dog = get_node("Dog")
 
 func _ready():
-	var rope = Rope.instance()
+	rope = Rope.instance()
 	add_child(rope)
 	rope.spawn(Person, Dog)
 
+func _physics_process(delta):
+	if Input.is_action_just_pressed("leash_pull"):
+		rope.pull()
+	
 #func _input(event):
 #	if event is InputEventMouseButton and !event.is_pressed():
 #		if start_pos == Vector2.ZERO:

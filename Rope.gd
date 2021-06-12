@@ -30,6 +30,13 @@ func spawn(object1:Object, object2:Object):
 	object2.get_node("C/J").node_b = rope_end_piece.get_path()
 	create(pieces_amount, rope_start_piece, end_pos, spawn_angle)
 
+func pull():
+	for r in rope_parts:
+		var radians = r.get_rotation() - PI / 2
+		var direction = Vector2(cos(radians), sin(radians))
+		r.set_linear_velocity(direction * 800)
+		print("pull")
+
 func create(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:float) -> void:
 	for i in pieces_amount:
 		print(i)
