@@ -32,6 +32,7 @@ var barkZips = [
 ]
 
 var sound_zt = preload("res://sounds/Curse zt.ogg")
+var sound_switch = preload("res://sounds/Curse switch.ogg")
 
 func _ready():
 	$SoulSwitchTimer.set_wait_time(15)
@@ -127,16 +128,16 @@ func _on_Dog_scored(player):
 
 
 func _on_TestStage_invert_screen_signal(boolean):
-	$Cam/ShaderColor.get_material().set_shader_param("intensity", int(boolean))
+	$Cam/ShaderColor.visible = boolean
 	$Cam/ShaderGlitch.visible = boolean
 	
 	if boolean == true:
-		playZt()
+		playSound(sound_zt)
 		Cam.get_node("ScreenShake").start(0.05, 18, 33, 0)
 
-func playZt():
+func playSound(sound):
 	var ztPlayer = AudioStreamPlayer.new()
 	add_child(ztPlayer)
-	sound_zt.set_loop(false)
-	ztPlayer.set_stream(sound_zt)
+	sound.set_loop(false)
+	ztPlayer.set_stream(sound)
 	ztPlayer.play()

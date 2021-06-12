@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Curse switch.ogg-6a151907866db65e9595650c4a7fbe86.oggstr"
+
+[deps]
+
+source_file="res://sounds/Curse switch.ogg"
+dest_files=[ "res://.import/Curse switch.ogg-6a151907866db65e9595650c4a7fbe86.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
