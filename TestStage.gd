@@ -50,7 +50,7 @@ func _physics_process(delta):
 	var time_left = $SoulSwitchTimer.get_time_left()
 	#print(time_left)
 	if time_left < warning_time_switch:
-		var extra_black_screen = 0.5
+		var extra_black_screen = 0.2
 		var inverted_fraction = max(0,(time_left - extra_black_screen)/(warning_time_switch - extra_black_screen))
 		var fraction = 1 - inverted_fraction
 		if time_left < extra_black_screen:
