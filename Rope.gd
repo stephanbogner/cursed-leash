@@ -31,15 +31,30 @@ func spawn(object1:Object, object2:Object):
 	create(pieces_amount, rope_start_piece, end_pos, spawn_angle)
 
 func pull():
-	for r in rope_parts:
+	for i in rope_parts.size():
+		var r = rope_parts[i]
 		var radians = r.get_rotation() - PI / 2
 		var direction = Vector2(cos(radians), sin(radians))
-		r.set_linear_velocity(direction * 800)
+		r.set_linear_velocity(direction * 40 * i)
 		print("pull")
+	shorten(6)
+
+func shorten(amount:int):
+	for i in amount:
+		if rope_parts.size() < 4:
+			break
+		var rope_piece_to_remove = rope_parts.pop_front()
+		#rope_parts[i].scale.y = 0.1
+		#rope_parts[i].scale.x = 4
+		#rope_parts[i].get_node("C/J").position.y = 0.1
+		rope_piece_to_remove.free()
+	#rope_start_joint.set_softness(1)
+	rope_start_joint.node_b = rope_parts[0].get_path()
+	#rope_parts[0].global_position = rope_start_piece.global_position
+	#rope_start_joint.set_softness(1)
 
 func create(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:float) -> void:
 	for i in pieces_amount:
-		print(i)
 		parent = add_piece(parent, i, spawn_angle)
 		parent.set_name("rope_piece_" + str(i))
 		rope_parts.append(parent)
