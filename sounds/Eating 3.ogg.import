@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Eating 3.ogg-1af0c3d62b1dfd96ecfbca3de77686d1.oggstr"
+
+[deps]
+
+source_file="res://sounds/Eating 3.ogg"
+dest_files=[ "res://.import/Eating 3.ogg-1af0c3d62b1dfd96ecfbca3de77686d1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
