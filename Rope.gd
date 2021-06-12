@@ -4,15 +4,23 @@ var RopePiece = preload("res://RopePiece.tscn")
 var piece_length := 3
 var rope_parts := []
 var rope_close_tolerance := 4.0
+var rope_points : PoolVector2Array = []
 
 onready var rope_start_piece = $RopeStartPiece
 onready var rope_end_piece = $RopeEndPiece
+onready var rope_start_joint = $RopeStartPiece/C/J
+onready var rope_end_joint = $RopeEndPiece/C/J
+
+func _process(_delta):
+	get_rope_points()
+	if !rope_points.empty():
+		update()
 
 func spawn(object1:Object, object2:Object):
 	rope_start_piece.global_position = object1.get_node("C/J").global_position
 	rope_end_piece.global_position = object2.get_node("C/J").global_position
-	var start_pos = rope_start_piece.get_node("C/J").global_position
-	var end_pos = rope_end_piece.get_node("C/J").global_position
+	var start_pos = rope_start_joint.global_position
+	var end_pos = rope_end_joint.global_position
 
 	var distance = start_pos.distance_to(end_pos)
 	var pieces_amount = round(distance/piece_length)
@@ -32,9 +40,8 @@ func create(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:float
 		var joint_pos = parent.get_node("C/J").global_position
 		if joint_pos.distance_to(end_pos) < rope_close_tolerance:
 			break
-			
-	rope_end_piece.get_node("C/J").node_a = rope_end_piece.get_path()
-	rope_end_piece.get_node("C/J").node_b = rope_parts[-1].get_path()
+
+	rope_end_joint.node_b = rope_parts[-1].get_path()
 
 func add_piece(parent:Object, id:int, spawn_angle:float) -> Object:
 	var joint: PinJoint2D = parent.get_node("C/J") as PinJoint2D
@@ -47,3 +54,13 @@ func add_piece(parent:Object, id:int, spawn_angle:float) -> Object:
 	joint.node_a = parent.get_path()
 	joint.node_b = piece.get_path()
 	return piece
+
+func get_rope_points() -> void:
+	rope_points = []
+	rope_points.append(rope_start_joint.global_position)
+	for r in rope_parts:
+		rope_points.append(r.global_position)
+	rope_points.append(rope_end_joint.global_position)
+
+func _draw():
+	draw_polyline(rope_points, Color.black)

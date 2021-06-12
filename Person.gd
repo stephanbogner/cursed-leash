@@ -7,7 +7,7 @@ var motion = Vector2()
 
 func _ready():
 	#self.set_weight(10)
-	self.set_mass(10)
+	#self.set_mass(10)
 	pass
 
 func _physics_process(delta):

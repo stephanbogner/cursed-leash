@@ -1,5 +1,9 @@
 extends Node2D
 
+# Layer 1 Person
+# Layer 2 Dog
+# Layer 3 Rope
+
 var Rope = preload("res://Rope.tscn")
 var start_pos := Vector2(100, 100)
 var end_pos := Vector2(200, 200)

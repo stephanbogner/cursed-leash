@@ -12,26 +12,35 @@ script = ExtResource( 1 )
 
 [node name="Person" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200.653, 377.998 )
-collision_layer = 0
-collision_mask = 0
+collision_mask = 3
 script = ExtResource( 6 )
 
 [node name="Dog" parent="." instance=ExtResource( 3 )]
 position = Vector2( 625.496, 314.519 )
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 4 )
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]
 position = Vector2( 250.48, 248.769 )
+collision_layer = 7
+collision_mask = 7
 script = null
 
 [node name="TrashCan2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 291.751, 204.222 )
+collision_layer = 7
+collision_mask = 7
 script = null
 
 [node name="TrashCan3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 382.482, 239.597 )
+collision_layer = 7
+collision_mask = 7
 script = null
 
 [node name="TrashCan4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 360.536, 146.901 )
+collision_layer = 7
+collision_mask = 7
 script = null
