@@ -27,14 +27,19 @@ func _ready():
 	rope = Rope.instance()
 	add_child(rope)
 	rope.spawn(Person, Dog)
-	$Cam/Shader.get_material().set_shader_param("shaderStrength", 0)
+	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
+	$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
+	$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
 
 func _physics_process(delta):
 	var time_left = $SoulSwitchTimer.get_time_left()
 	print(time_left)
 	if time_left < 5:
 		var fraction = 1 - time_left/5
-		$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
+		$Cam/ShaderColor.get_material().set_shader_param("intensity", fraction)
+		$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", fraction/10)
+		$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0.2)
+		#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
 	
 	if Input.is_action_just_pressed("player1_action_primary"):
 		rope.pull()
@@ -67,5 +72,8 @@ func _physics_process(delta):
 
 func _on_SoulSwitchTimer_timeout():
 	print("switch")
-	$Cam/Shader.get_material().set_shader_param("shaderStrength", 0)
+	#$Cam/Shader.get_material().set_shader_param("shaderStrength", 0)
+	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
+	$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
+	$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
 	pass # Replace with function body.
