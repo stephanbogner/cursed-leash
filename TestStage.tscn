@@ -452,7 +452,7 @@ rotation = 0.461072
 texture = ExtResource( 11 )
 
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
-[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]

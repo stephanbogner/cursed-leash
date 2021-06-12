@@ -12,31 +12,33 @@ height = 90.0
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+[node name="Buildings" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
 collision_layer = 7
 collision_mask = 7
+mode = 1
 
-[node name="Buildings left" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/RigidBody2D"]
+[node name="Buildings left" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
 position = Vector2( -952.868, 324.014 )
 polygon = PoolVector2Array( -873.93, -42.7663, -769.049, 68.1084, -751.069, 211.946, -670.16, 202.956, -655.177, 113.058, -556.289, -9.80353, -529.319, -51.7562, -256.628, -84.7189, -184.709, -69.7358, -112.79, 2.18292, -88.8171, 122.047, -37.8748, 113.058, -16.8984, 256.895, 87.983, 244.909, 75.9966, 122.047, 147.915, 104.068, 129.936, -30.7798, 378.655, -72.7324, 378.655, -93.7087, 582.424, -120.678, 591.414, -99.702, 645.353, -102.699, 678.316, 35.1456, 762.221, 14.1694, 840.133, 586.523, 881.495, 822.109, -1026.13, 809.388, -1045.18, -165.276, -990.531, -59.3362, -893.06, -74.1686 )
 
-[node name="Buildings right" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/RigidBody2D"]
+[node name="Buildings right" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
 polygon = PoolVector2Array( 471.434, 1138.77, 357.012, 473.428, 919.972, 404.637, 982.199, 433.228, 1074.7, 428.182, 1116.74, 450.046, 1979.5, 342.411, 1990.75, 1161.78 )
 
-[node name="Red car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/RigidBody2D"]
-polygon = PoolVector2Array( -146.429, -40.6911, -164.685, -34.3415, -167.066, -7.35573, -148.017, 5.34349, -61.5035, 2.16869, -53.5665, -3.38722, -51.9791, -37.5163, -67.0594, -45.4533 )
-
-[node name="Beige car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/RigidBody2D"]
-polygon = PoolVector2Array( 122.635, -0.212418, 115.492, -24.0234, 120.254, -43.8659, 160.733, -48.6282, 225.816, -49.4218, 255.977, -45.4533, 259.151, -4.97462, 227.403, 1.37498, 164.701, 3.75609 )
-
-[node name="White car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/RigidBody2D"]
-polygon = PoolVector2Array( -477.824, -43.5405, -490.423, -33.4611, -491.683, -5.74284, -475.304, 4.33653, -422.387, 4.96649, -366.951, 1.8167, -359.391, -8.89264, -359.391, -30.9413, -368.211, -44.1704, -388.999, -46.6903 )
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+[node name="Cars" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
 collision_layer = 7
 collision_mask = 7
+mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/RigidBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
 position = Vector2( 375, -116 )
 rotation = -1.55104
 shape = SubResource( 1 )
+
+[node name="White car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -477.824, -43.5405, -490.423, -33.4611, -491.683, -5.74284, -475.304, 4.33653, -422.387, 4.96649, -366.951, 1.8167, -359.391, -8.89264, -359.391, -30.9413, -368.211, -44.1704, -388.999, -46.6903 )
+
+[node name="Beige car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( 122.635, -0.212418, 115.492, -24.0234, 120.254, -43.8659, 160.733, -48.6282, 225.816, -49.4218, 255.977, -45.4533, 259.151, -4.97462, 227.403, 1.37498, 164.701, 3.75609 )
+
+[node name="Red car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -146.429, -40.6911, -164.685, -34.3415, -167.066, -7.35573, -148.017, 5.34349, -61.5035, 2.16869, -53.5665, -3.38722, -51.9791, -37.5163, -67.0594, -45.4533 )
