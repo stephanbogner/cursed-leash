@@ -14,14 +14,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Smooth_Female_Casual avatar" type="Sprite" parent="."]
+[node name="person_player1" type="Sprite" parent="."]
 position = Vector2( 12.5, 19.5 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 2 )
 
-[node name="Pug avatar" type="Sprite" parent="."]
+[node name="person_player2" type="Sprite" parent="."]
+position = Vector2( 308.798, 23.4205 )
+scale = Vector2( -0.35, 0.35 )
+texture = ExtResource( 2 )
+
+[node name="pug_player2" type="Sprite" parent="."]
 position = Vector2( 312.347, 22 )
 scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )
+
+[node name="pug_player1" type="Sprite" parent="."]
+position = Vector2( 14.2597, 20.156 )
+scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 1 )
 
 [node name="Player1" type="Label" parent="."]

@@ -23,6 +23,8 @@ var score = {
 	"player2": 0
 }
 
+var person = "player1"
+
 var barkZips = [
 	preload("res://sounds/Bark zip 1.ogg"),
 	preload("res://sounds/Bark zip 2.ogg"),
@@ -35,6 +37,7 @@ var sound_zt = preload("res://sounds/Curse zt.ogg")
 var sound_switch = preload("res://sounds/Curse switch.ogg")
 
 func _ready():
+	update_avatars(false)
 	$SoulSwitchTimer.set_wait_time(15)
 	$SoulSwitchTimer.start()
 	
@@ -104,11 +107,12 @@ func _physics_process(delta):
 
 func _on_SoulSwitchTimer_timeout():
 	print("switch")
+	if person == "player1":
+		person = "player2"
+	else:
+		person = "player1"
+	update_avatars(false)
 	emit_signal("invert_screen_signal", false)
-	#$Cam/Shader.get_material().set_shader_param("shaderStrength", 0)
-	#$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
-	#$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
-	#$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
 	pass # Replace with function body.
 
 
@@ -132,8 +136,23 @@ func _on_TestStage_invert_screen_signal(boolean):
 	$Cam/ShaderGlitch.visible = boolean
 	
 	if boolean == true:
+		update_avatars(true)
 		playSound(sound_zt)
 		Cam.get_node("ScreenShake").start(0.05, 18, 33, 0)
+	else:
+		update_avatars(false)
+
+func update_avatars(inverted):
+	if inverted == false:
+		$Cam/CanvasLayer/Interface/person_player1.visible = person == "player1"
+		$Cam/CanvasLayer/Interface/pug_player1.visible = person != "player1"
+		$Cam/CanvasLayer/Interface/person_player2.visible = person == "player2"
+		$Cam/CanvasLayer/Interface/pug_player2.visible = person != "player2"
+	else:
+		$Cam/CanvasLayer/Interface/person_player1.visible = person != "player1"
+		$Cam/CanvasLayer/Interface/pug_player1.visible = person == "player1"
+		$Cam/CanvasLayer/Interface/person_player2.visible = person != "player2"
+		$Cam/CanvasLayer/Interface/pug_player2.visible = person == "player2"
 
 func playSound(sound):
 	var ztPlayer = AudioStreamPlayer.new()
