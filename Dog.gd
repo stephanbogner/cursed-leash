@@ -6,13 +6,28 @@ const MAXSPEED = 300
 var motion = Vector2(0, 0)
 var motion_scale = 1
 
+signal scored
+
 var in_control = "player2"
 
 func _ready():
+	set_contact_monitor( true )
+	set_max_contacts_reported( 5 )
+	#connect("body_enter",self,"collion_now")
 #	self.set_mass(10)
 	pass
 
 func _physics_process(delta):
+	var colliding_bodies = get_colliding_bodies()
+	if(colliding_bodies.size() > 0 ):
+		for b in colliding_bodies:
+			var name = b.get_name()
+			if name == "Collectible":
+					emit_signal("scored", in_control)
+					b.queue_free()
+		#print(colliding_bodies)
+		#pass
+
 	if Input.is_action_pressed(in_control + "_forward"):
 		motion.y -= ACC
 		self.get_node("C/AnimationPlayer").play("Running")

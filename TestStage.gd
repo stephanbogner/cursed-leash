@@ -4,6 +4,7 @@ extends Node2D
 # Layer 2 Dog
 # Layer 3 Rope
 
+var Collectible = preload("res://Collectible.tscn")
 var Rope = preload("res://Rope.tscn")
 var rope
 var start_pos := Vector2(100, 100)
@@ -12,6 +13,11 @@ var end_pos := Vector2(200, 200)
 onready var Person = get_node("Person")
 onready var Dog = get_node("Dog")
 onready var Cam = get_node("Cam")
+
+var score = {
+	"player1": 0,
+	"player2": 0
+}
 
 var barkZips = [
 	preload("res://sounds/Bark zip 1.ogg"),
@@ -24,6 +30,10 @@ var barkZips = [
 func _ready():
 	$SoulSwitchTimer.set_wait_time(15)
 	$SoulSwitchTimer.start()
+	
+	$LootDropTimer.set_wait_time(3)
+	$LootDropTimer.start()
+	
 	rope = Rope.instance()
 	add_child(rope)
 	rope.spawn(Person, Dog)
@@ -33,7 +43,7 @@ func _ready():
 
 func _physics_process(delta):
 	var time_left = $SoulSwitchTimer.get_time_left()
-	print(time_left)
+	#print(time_left)
 	if time_left < 5:
 		var fraction = 1 - time_left/5
 		$Cam/ShaderColor.get_material().set_shader_param("intensity", fraction)
@@ -77,3 +87,16 @@ func _on_SoulSwitchTimer_timeout():
 	$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
 	$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
 	pass # Replace with function body.
+
+
+func _on_LootDropTimer_timeout():
+	var collectible = Collectible.instance()
+	add_child(collectible)
+	pass # Replace with function body.
+
+func updateScoreUI():
+	print(score)
+
+func _on_Dog_scored(player):
+	score[player] += 1
+	updateScoreUI()
