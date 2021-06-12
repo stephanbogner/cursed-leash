@@ -4,6 +4,10 @@ extends Node2D
 # Layer 2 Dog
 # Layer 3 Rope
 
+signal invert_screen_signal
+
+var warning_time_switch = 5
+var invert_screen = false
 var Collectible = preload("res://Collectible.tscn")
 var Rope = preload("res://Rope.tscn")
 var rope
@@ -27,6 +31,8 @@ var barkZips = [
 	preload("res://sounds/Bark zip 5.ogg")
 ]
 
+var sound_zt = preload("res://sounds/Curse zt.ogg")
+
 func _ready():
 	$SoulSwitchTimer.set_wait_time(15)
 	$SoulSwitchTimer.start()
@@ -38,17 +44,33 @@ func _ready():
 	add_child(rope)
 	rope.spawn(Person, Dog)
 	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
-	$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
-	$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
 
 func _physics_process(delta):
 	var time_left = $SoulSwitchTimer.get_time_left()
 	#print(time_left)
-	if time_left < 5:
-		var fraction = 1 - time_left/5
-		$Cam/ShaderColor.get_material().set_shader_param("intensity", fraction)
-		$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", fraction/10)
-		$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0.2)
+	if time_left < warning_time_switch:
+		var extra_black_screen = 0.5
+		var inverted_fraction = max(0,(time_left - extra_black_screen)/(warning_time_switch - extra_black_screen))
+		var fraction = 1 - inverted_fraction
+		if time_left < extra_black_screen:
+			if invert_screen == false:
+				emit_signal("invert_screen_signal", true)
+				print("now true")
+			invert_screen = true
+		else:
+			var helper_invert = sin(fraction * fraction * fraction * 80);
+			if helper_invert < 0:
+				if invert_screen == false:
+					emit_signal("invert_screen_signal", true)
+					print("now true")
+				invert_screen = true
+			else:
+				if invert_screen == true:
+					emit_signal("invert_screen_signal", false)
+					print("now false")
+				invert_screen = false
+		#$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", fraction/10)
+		#$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0.2)
 		#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
 	
 	if Input.is_action_just_pressed("player1_action_primary"):
@@ -59,7 +81,6 @@ func _physics_process(delta):
 		var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
 		selectedSound.set_loop(false)
 		barkPlayer.set_stream(selectedSound)
-		barkPlayer.autoplay = true
 		barkPlayer.play()
 		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 		
@@ -82,10 +103,11 @@ func _physics_process(delta):
 
 func _on_SoulSwitchTimer_timeout():
 	print("switch")
+	emit_signal("invert_screen_signal", false)
 	#$Cam/Shader.get_material().set_shader_param("shaderStrength", 0)
-	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
-	$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
-	$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
+	#$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
+	#$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", 0)
+	#$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0)
 	pass # Replace with function body.
 
 
@@ -95,8 +117,26 @@ func _on_LootDropTimer_timeout():
 	pass # Replace with function body.
 
 func updateScoreUI():
+	$Cam/CanvasLayer/Interface.get_node("Player1").set_text(str(score.player1))
+	$Cam/CanvasLayer/Interface.get_node("Player2").set_text(str(score.player2))
 	print(score)
 
 func _on_Dog_scored(player):
 	score[player] += 1
 	updateScoreUI()
+
+
+func _on_TestStage_invert_screen_signal(boolean):
+	$Cam/ShaderColor.get_material().set_shader_param("intensity", int(boolean))
+	$Cam/ShaderGlitch.visible = boolean
+	
+	if boolean == true:
+		playZt()
+		Cam.get_node("ScreenShake").start(0.05, 18, 33, 0)
+
+func playZt():
+	var ztPlayer = AudioStreamPlayer.new()
+	add_child(ztPlayer)
+	sound_zt.set_loop(false)
+	ztPlayer.set_stream(sound_zt)
+	ztPlayer.play()

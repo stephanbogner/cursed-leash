@@ -1,5 +1,6 @@
 extends Node2D
 
+var change_leash_color = false
 var RopePiece = preload("res://RopePiece.tscn")
 var piece_length := 3
 var rope_parts := []
@@ -85,6 +86,13 @@ func get_rope_points() -> void:
 		rope_points.append(r.global_position)
 	rope_points.append(rope_end_joint.global_position)
 
+func _on_TestStage_invert_screen_signal(boolean):
+	print("changed now")
+	change_leash_color = boolean
+
 func _draw():
-	draw_polyline(rope_points, Color(201, 0, 181, 0.001), 12.0)
-	draw_polyline(rope_points, Color("#3D0037"), 4.0)
+	if change_leash_color == true:
+		draw_polyline(rope_points, Color(201, 0, 181, 0.001), 12.0)
+		draw_polyline(rope_points, Color("#830176"), 4.0)
+	else:
+		draw_polyline(rope_points, Color("#3D0037"), 4.0)
