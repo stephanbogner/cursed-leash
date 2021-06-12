@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://RopePiece.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Leash.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -22,7 +22,7 @@ position = Vector2( 0, 3 )
 bias = 0.1
 softness = 0.1
 
-[node name="icon" type="Sprite" parent="C/J"]
-position = Vector2( 0, -6 )
-scale = Vector2( 0.1, 0.1 )
+[node name="Leash" type="Sprite" parent="C/J"]
+position = Vector2( -0.0662594, -1.60987 )
+scale = Vector2( 1.49863, 1.11635 )
 texture = ExtResource( 2 )

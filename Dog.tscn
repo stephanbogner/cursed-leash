@@ -6,7 +6,9 @@
 radius = 8.94721
 height = 28.1328
 
-[node name="Dog" type="KinematicBody2D"]
+[node name="Dog" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="C" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

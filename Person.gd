@@ -1,9 +1,12 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 const UP = Vector2(0, -1)
 const ACC = 30
 const MAXSPEED = 200
 var motion = Vector2()
+
+func _on_ready():
+	self.set_weight(70)
 
 func _physics_process(delta):
 	if Input.is_action_pressed("person_up"):
@@ -26,4 +29,5 @@ func _physics_process(delta):
 	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
 	motion.y = clamp(motion.y, -MAXSPEED, MAXSPEED)
 	
-	motion = move_and_slide(motion, UP)
+	self.set_linear_velocity(motion)
+#	motion = move_and_slide(motion, UP)
