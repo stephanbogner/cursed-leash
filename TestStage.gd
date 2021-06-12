@@ -21,6 +21,7 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("player1_action_primary"):
 		rope.pull()
+		Dog.get_node("C/reaction-zip").play()
 		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 
 		
