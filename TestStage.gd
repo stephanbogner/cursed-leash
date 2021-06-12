@@ -19,7 +19,7 @@ func _ready():
 	rope.spawn(Person, Dog)
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("leash_pull"):
+	if Input.is_action_just_pressed("player1_action_primary"):
 		rope.pull()
 		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 

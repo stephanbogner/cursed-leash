@@ -11,16 +11,16 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("person_up"):
+	if Input.is_action_pressed("player1_forward"):
 		motion.y -= ACC
-	elif Input.is_action_pressed("person_down"):
+	elif Input.is_action_pressed("player1_backward"):
 		motion.y += ACC
 	else:
 		motion.y = lerp(motion.y, 0, 0.2)
 
-	if Input.is_action_pressed("person_left"):
+	if Input.is_action_pressed("player1_left"):
 		motion.x -= ACC
-	elif Input.is_action_pressed("person_right"):
+	elif Input.is_action_pressed("player1_right"):
 		motion.x += ACC
 	else:
 		motion.x = lerp(motion.x, 0, 0.2)

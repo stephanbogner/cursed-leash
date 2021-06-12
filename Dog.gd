@@ -11,19 +11,19 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("dog_up"):
+	if Input.is_action_pressed("player2_forward"):
 		motion.y -= ACC
 		self.get_node("C/AnimationPlayer").play("Running")
-	elif Input.is_action_pressed("dog_down"):
+	elif Input.is_action_pressed("player2_backward"):
 		motion.y += ACC
 		self.get_node("C/AnimationPlayer").play("Running")
 	else:
 		motion.y = lerp(motion.y, 0, 0.2)
 
-	if Input.is_action_pressed("dog_left"):
+	if Input.is_action_pressed("player2_left"):
 		motion.x -= ACC
 		self.get_node("C/AnimationPlayer").play("Running")
-	elif Input.is_action_pressed("dog_right"):
+	elif Input.is_action_pressed("player2_right"):
 		motion.x += ACC
 		self.get_node("C/AnimationPlayer").play("Running")
 	else:
@@ -35,7 +35,7 @@ func _physics_process(delta):
 	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
 	motion.y = clamp(motion.y, -MAXSPEED, MAXSPEED)
 	
-	if Input.is_action_just_pressed("dog_dash"):
+	if Input.is_action_just_pressed("player2_action_primary"):
 		#self.apply_central_impulse(Vector2(3000, 0))
 		motion_scale = 5
 		var timer = Timer.new() #https://gdscript.com/solutions/godot-timing-tutorial/
