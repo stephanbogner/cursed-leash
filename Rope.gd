@@ -86,4 +86,5 @@ func get_rope_points() -> void:
 	rope_points.append(rope_end_joint.global_position)
 
 func _draw():
-	draw_polyline(rope_points, Color.black)
+	draw_polyline(rope_points, Color(201, 0, 181, 0.001), 12.0)
+	draw_polyline(rope_points, Color("#3D0037"), 4.0)
