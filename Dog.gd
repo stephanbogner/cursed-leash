@@ -6,24 +6,26 @@ const MAXSPEED = 300
 var motion = Vector2(0, 0)
 var motion_scale = 1
 
+var in_control = "player2"
+
 func _ready():
 #	self.set_mass(10)
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("player2_forward"):
+	if Input.is_action_pressed(in_control + "_forward"):
 		motion.y -= ACC
 		self.get_node("C/AnimationPlayer").play("Running")
-	elif Input.is_action_pressed("player2_backward"):
+	elif Input.is_action_pressed(in_control + "_backward"):
 		motion.y += ACC
 		self.get_node("C/AnimationPlayer").play("Running")
 	else:
 		motion.y = lerp(motion.y, 0, 0.2)
 
-	if Input.is_action_pressed("player2_left"):
+	if Input.is_action_pressed(in_control + "_left"):
 		motion.x -= ACC
 		self.get_node("C/AnimationPlayer").play("Running")
-	elif Input.is_action_pressed("player2_right"):
+	elif Input.is_action_pressed(in_control + "_right"):
 		motion.x += ACC
 		self.get_node("C/AnimationPlayer").play("Running")
 	else:
@@ -35,7 +37,7 @@ func _physics_process(delta):
 	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
 	motion.y = clamp(motion.y, -MAXSPEED, MAXSPEED)
 	
-	if Input.is_action_just_pressed("player2_action_primary"):
+	if Input.is_action_just_pressed(in_control + "_action_primary"):
 		#self.apply_central_impulse(Vector2(3000, 0))
 		motion_scale = 5
 		var timer = Timer.new() #https://gdscript.com/solutions/godot-timing-tutorial/
@@ -51,3 +53,10 @@ func _physics_process(delta):
 func _on_timeout():
 	motion_scale = 1
 	print("now")
+
+
+func _on_SoulSwitchTimer_timeout():
+	if in_control == "player2":
+		in_control = "player1"
+	else:
+		in_control = "player2"

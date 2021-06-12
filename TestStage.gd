@@ -22,11 +22,17 @@ var barkZips = [
 ]
 
 func _ready():
+	$SoulSwitchTimer.set_wait_time(15)
+	$SoulSwitchTimer.start()
 	rope = Rope.instance()
 	add_child(rope)
 	rope.spawn(Person, Dog)
 
 func _physics_process(delta):
+	var time_left = $SoulSwitchTimer.get_time_left()
+	if time_left < 5:
+		var fraction = time_left/5
+	
 	if Input.is_action_just_pressed("player1_action_primary"):
 		rope.pull()
 		#Dog.get_node("C/reaction-zip").play()
@@ -54,3 +60,8 @@ func _physics_process(delta):
 #			rope.spwan_rope(start_pos, end_pos)
 #			start_pos = Vector2.ZERO
 #			end_pos = Vector2.ZERO
+
+
+func _on_SoulSwitchTimer_timeout():
+	print("switch")
+	pass # Replace with function body.

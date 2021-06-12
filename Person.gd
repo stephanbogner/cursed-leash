@@ -5,22 +5,24 @@ const ACC = 30
 const MAXSPEED = 200
 var motion = Vector2()
 
+var in_control = "player1"
+
 func _ready():
 	#self.set_weight(10)
 	#self.set_mass(10)
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("player1_forward"):
+	if Input.is_action_pressed(in_control + "_forward"):
 		motion.y -= ACC
-	elif Input.is_action_pressed("player1_backward"):
+	elif Input.is_action_pressed(in_control + "_backward"):
 		motion.y += ACC
 	else:
 		motion.y = lerp(motion.y, 0, 0.2)
 
-	if Input.is_action_pressed("player1_left"):
+	if Input.is_action_pressed(in_control + "_left"):
 		motion.x -= ACC
-	elif Input.is_action_pressed("player1_right"):
+	elif Input.is_action_pressed(in_control + "_right"):
 		motion.x += ACC
 	else:
 		motion.x = lerp(motion.x, 0, 0.2)
@@ -33,3 +35,10 @@ func _physics_process(delta):
 	
 	self.set_linear_velocity(motion)
 #	motion = move_and_slide(motion, UP)
+
+
+func _on_SoulSwitchTimer_timeout():
+	if in_control == "player2":
+		in_control = "player1"
+	else:
+		in_control = "player2"
