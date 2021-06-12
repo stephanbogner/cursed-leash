@@ -13,15 +13,19 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_pressed("dog_up"):
 		motion.y -= ACC
+		self.get_node("C/AnimationPlayer").play("Running")
 	elif Input.is_action_pressed("dog_down"):
 		motion.y += ACC
+		self.get_node("C/AnimationPlayer").play("Running")
 	else:
 		motion.y = lerp(motion.y, 0, 0.2)
 
 	if Input.is_action_pressed("dog_left"):
 		motion.x -= ACC
+		self.get_node("C/AnimationPlayer").play("Running")
 	elif Input.is_action_pressed("dog_right"):
 		motion.x += ACC
+		self.get_node("C/AnimationPlayer").play("Running")
 	else:
 		motion.x = lerp(motion.x, 0, 0.2)
 	
