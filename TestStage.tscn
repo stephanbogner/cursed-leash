@@ -16,7 +16,7 @@
 [ext_resource path="res://cars/Taxi.png" type="Texture" id=14]
 [ext_resource path="res://Interface.tscn" type="PackedScene" id=15]
 
-[sub_resource type="Shader" id=8]
+[sub_resource type="Shader" id=1]
 code = "/*
 	Glitch Effect Shader by Yui Kinomoto @arlez80
 
@@ -70,15 +70,15 @@ void fragment( )
 	COLOR = pixel_color;
 }"
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/shake_power = 0.03
 shader_param/shake_rate = 0.436
 shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 // 振動の強さ
@@ -135,8 +135,8 @@ void fragment( )
 	COLOR.rgb = new_color.rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/shake_power = 0.03
 shader_param/shake_rate = 0.2
 shader_param/shake_speed = 5.0
@@ -220,7 +220,7 @@ smoothing_enabled = true
 
 [node name="ShaderGlitch" type="Sprite" parent="Cam"]
 visible = false
-material = SubResource( 9 )
+material = SubResource( 2 )
 position = Vector2( -18.2411, 2.02673 )
 scale = Vector2( 550.259, 82.0715 )
 texture = ExtResource( 9 )
@@ -233,7 +233,7 @@ texture = ExtResource( 9 )
 
 [node name="ShaderColor" type="Sprite" parent="Cam"]
 visible = false
-material = SubResource( 7 )
+material = SubResource( 4 )
 position = Vector2( 9.00704, 8.51008 )
 scale = Vector2( 629.085, 100.308 )
 texture = ExtResource( 9 )
