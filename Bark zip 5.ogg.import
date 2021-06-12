@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Bark zip 5.ogg-7134336fbadd808b572ab4362707d091.oggs
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
