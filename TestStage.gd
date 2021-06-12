@@ -38,7 +38,7 @@ var sound_switch = preload("res://sounds/Curse switch.ogg")
 
 func _ready():
 	update_avatars(false)
-	$SoulSwitchTimer.set_wait_time(15)
+	$SoulSwitchTimer.set_wait_time(30)
 	$SoulSwitchTimer.start()
 	
 	$LootDropTimer.set_wait_time(3)
@@ -80,12 +80,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("player1_action_primary"):
 		rope.pull()
 		#Dog.get_node("C/reaction-zip").play()
-		var barkPlayer = AudioStreamPlayer.new()
-		add_child(barkPlayer)
 		var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
-		selectedSound.set_loop(false)
-		barkPlayer.set_stream(selectedSound)
-		barkPlayer.play()
+		playSound(selectedSound)
 		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 		
 	var person_position = Person.get_position()
@@ -160,3 +156,5 @@ func playSound(sound):
 	sound.set_loop(false)
 	ztPlayer.set_stream(sound)
 	ztPlayer.play()
+	yield(ztPlayer, "finished") #Via https://godotengine.org/qa/67049/help-with-audiostreamplayer
+	ztPlayer.queue_free()

@@ -8,6 +8,7 @@ var motion_scale = 1
 
 signal scored
 
+var sound_eating = preload("res://sounds/Eating.ogg")
 var in_control = "player2"
 
 func _ready():
@@ -17,6 +18,15 @@ func _ready():
 #	self.set_mass(10)
 	pass
 
+func playSound(sound):
+	var ztPlayer = AudioStreamPlayer.new()
+	add_child(ztPlayer)
+	sound.set_loop(false)
+	ztPlayer.set_stream(sound)
+	ztPlayer.play()
+	yield(ztPlayer, "finished") #Via https://godotengine.org/qa/67049/help-with-audiostreamplayer
+	ztPlayer.queue_free()
+
 func _physics_process(delta):
 	var colliding_bodies = get_colliding_bodies()
 	if(colliding_bodies.size() > 0 ):
@@ -24,6 +34,7 @@ func _physics_process(delta):
 			var name = b.get_name()
 			if name == "Collectible":
 					emit_signal("scored", in_control)
+					playSound(sound_eating)
 					b.queue_free()
 		#print(colliding_bodies)
 		#pass
