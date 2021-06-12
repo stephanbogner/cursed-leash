@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="GMTK Game Jam Gam"
+config/name="Cursed Leash"
 run/main_scene="res://TestStage.tscn"
 config/icon="res://icon.png"
 
