@@ -11,6 +11,9 @@ height = 90.0
 [node name="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Buildings" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
 collision_layer = 7
@@ -42,3 +45,36 @@ polygon = PoolVector2Array( 122.635, -0.212418, 115.492, -24.0234, 120.254, -43.
 
 [node name="Red car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
 polygon = PoolVector2Array( -146.429, -40.6911, -164.685, -34.3415, -167.066, -7.35573, -148.017, 5.34349, -61.5035, 2.16869, -53.5665, -3.38722, -51.9791, -37.5163, -67.0594, -45.4533 )
+
+[node name="Blue car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -742.073, -37.8626, -759.312, -33.2376, -762.675, -17.681, -760.153, 1.65958, -741.653, 8.80719, -693.722, 6.2845, -653.779, 5.02316, -643.688, -1.70401, -640.325, -19.3628, -651.256, -43.3284, -673.961, -44.5897 )
+
+[node name="Silver car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -738.151, -120.05, -764.878, -119.604, -778.242, -104.904, -777.351, -84.4136, -765.324, -73.7228, -734.588, -71.941, -677.125, -73.2774, -652.625, -76.841, -646.834, -85.75, -647.28, -112.477, -657.08, -120.05, -670.888, -121.831 )
+
+[node name="Taxi cab" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -977.852, -85.7784, -953.825, -80.439, -933.469, -80.439, -866.393, -82.1075, -839.696, -86.7795, -838.027, -108.137, -841.698, -131.163, -883.078, -135.167, -935.804, -136.169, -976.517, -129.828, -981.856, -108.471 )
+
+[node name="Scooter" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -1065.13, -150.715, -1078.99, -139.104, -1089.85, -137.605, -1090.6, -127.866, -1090.23, -112.134, -1082.36, -109.137, -1071.87, -120.749, -1061.38, -120, -1064.38, -127.866, -1059.51, -137.98, -1060.26, -148.468 )
+
+[node name="Small car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( -894.624, -33.7498, -917.328, -31.6476, -925.317, -12.307, -920.692, 7.03363, -895.465, 8.71542, -840.807, 9.55632, -824.409, 7.45409, -816.421, 1.98825, -813.477, -14.4092, -822.307, -32.909, -834.5, -35.4316 )
+
+[node name="Black car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( 78.205, 289.29, 63.4893, 296.018, 59.7053, 305.688, 76.5233, 410.38, 100.068, 410.8, 116.886, 403.232, 117.307, 385.573, 105.955, 296.859, 95.8639, 287.188 )
+
+[node name="Dark silver car" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Cars"]
+polygon = PoolVector2Array( 449.381, 40.3908, 440.895, 53.4722, 440.188, 68.675, 449.734, 84.9385, 494.282, 85.292, 544.487, 85.292, 566.76, 84.5849, 573.124, 70.7963, 571.71, 48.1689, 561.104, 39.6836 )
+
+[node name="People" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+mode = 1
+
+[node name="Palms" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+mode = 1
+
+[node name="Umbrellas" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+mode = 1
+
+[node name="Various" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+mode = 1
