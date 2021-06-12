@@ -21,3 +21,4 @@ texture = ExtResource( 1 )
 [node name="J" type="PinJoint2D" parent="C"]
 position = Vector2( -11.0753, -17.8908 )
 node_a = NodePath("../..")
+bias = 0.9

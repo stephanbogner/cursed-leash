@@ -1,7 +1,7 @@
 extends Node2D
 
 var RopePiece = preload("res://RopePiece.tscn")
-var piece_length := 4
+var piece_length := 3
 var rope_parts := []
 var rope_close_tolerance := 4.0
 
@@ -9,8 +9,8 @@ onready var rope_start_piece = $RopeStartPiece
 onready var rope_end_piece = $RopeEndPiece
 
 func spawn(object1:Object, object2:Object):
-	rope_start_piece.global_position = object1.global_position
-	rope_end_piece.global_position = object2.global_position
+	rope_start_piece.global_position = object1.get_node("C/J").global_position
+	rope_end_piece.global_position = object2.get_node("C/J").global_position
 	var start_pos = rope_start_piece.get_node("C/J").global_position
 	var end_pos = rope_end_piece.get_node("C/J").global_position
 

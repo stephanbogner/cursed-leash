@@ -17,7 +17,7 @@ collision_mask = 0
 script = ExtResource( 6 )
 
 [node name="Dog" parent="." instance=ExtResource( 3 )]
-position = Vector2( 408.834, 343.991 )
+position = Vector2( 625.496, 314.519 )
 script = ExtResource( 4 )
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]

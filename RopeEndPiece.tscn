@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="RopeEndPiece" type="RigidBody2D"]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 mode = 1
 
@@ -13,8 +13,7 @@ mode = 1
 shape = SubResource( 1 )
 
 [node name="J" type="PinJoint2D" parent="C"]
-bias = 0.1
-softness = 0.1
+bias = 0.9
 
 [node name="icon" type="Sprite" parent="C/J"]
 visible = false
