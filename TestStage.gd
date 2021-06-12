@@ -13,6 +13,14 @@ onready var Person = get_node("Person")
 onready var Dog = get_node("Dog")
 onready var Cam = get_node("Cam")
 
+var barkZips = [
+	preload("res://sounds/Bark zip 1.ogg"),
+	preload("res://sounds/Bark zip 2.ogg"),
+	preload("res://sounds/Bark zip 3.ogg"),
+	preload("res://sounds/Bark zip 4.ogg"),
+	preload("res://sounds/Bark zip 5.ogg")
+]
+
 func _ready():
 	rope = Rope.instance()
 	add_child(rope)
@@ -21,7 +29,14 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("player1_action_primary"):
 		rope.pull()
-		Dog.get_node("C/reaction-zip").play()
+		#Dog.get_node("C/reaction-zip").play()
+		var barkPlayer = AudioStreamPlayer.new()
+		add_child(barkPlayer)
+		var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
+		selectedSound.set_loop(false)
+		barkPlayer.set_stream(selectedSound)
+		barkPlayer.autoplay = true
+		barkPlayer.play()
 		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 		
 	var person_position = Person.get_position()

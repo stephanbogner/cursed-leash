@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Pug.png" type="Texture" id=1]
 [ext_resource path="res://Pug running 64px.png" type="Texture" id=2]
-[ext_resource path="res://Bark zip 5.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.94721
@@ -32,9 +31,6 @@ collision_mask = 0
 
 [node name="C" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="reaction-zip" type="AudioStreamPlayer2D" parent="C"]
-stream = ExtResource( 3 )
 
 [node name="Pug" type="Sprite" parent="C"]
 visible = false

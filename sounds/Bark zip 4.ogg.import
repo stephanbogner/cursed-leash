@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Bark zip 4.ogg-9ef770cbf2fbfb32bca35c59acf051e8.oggstr"
+
+[deps]
+
+source_file="res://sounds/Bark zip 4.ogg"
+dest_files=[ "res://.import/Bark zip 4.ogg-9ef770cbf2fbfb32bca35c59acf051e8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
