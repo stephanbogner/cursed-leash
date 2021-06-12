@@ -14,6 +14,15 @@ config/name="Cursed Leash"
 run/main_scene="res://TestStage.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=960
+window/size/test_height=540
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [input]
 
 player1_forward={

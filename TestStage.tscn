@@ -48,6 +48,7 @@ script = null
 
 [node name="Cam" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 3, 3 )
 smoothing_enabled = true
 
 [node name="ScreenShake" parent="Cam" instance=ExtResource( 7 )]
