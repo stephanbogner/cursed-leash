@@ -44,3 +44,7 @@ position = Vector2( 360.536, 146.901 )
 collision_layer = 7
 collision_mask = 7
 script = null
+
+[node name="Cam" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
