@@ -283,6 +283,7 @@ func updateScoreUI():
 	print(score)
 
 func _on_Dog_scored(player):
+	screenShakeAndRumble(0.05, 10, 20, 0)
 	if current_stage == "game":
 		score[player] += 1
 		updateScoreUI()
