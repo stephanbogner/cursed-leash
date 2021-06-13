@@ -7,8 +7,9 @@ extends Node2D
 
 signal invert_screen_signal
 
-var time_per_round = 40
-var time_per_soul_switch = 20
+var time_per_round = 90
+var times_per_soul_switch = [14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 6, 6, 6, 6]
+var copy_times_per_soul_switch
 var warning_time_switch = 5
 var invert_screen = false
 var Collectible = preload("res://Collectible.tscn")
@@ -53,7 +54,8 @@ func _physics_process(delta):
 	$Cam/CanvasLayer/Interface/TimeBar.set_value(fraction_left)
 	
 	var time_left = $SoulSwitchTimer.get_time_left()
-	#print(time_left)
+	print(time_left)
+	
 	if time_left < warning_time_switch:
 		var extra_black_screen = 0.2
 		var inverted_fraction = max(0,(time_left - extra_black_screen)/(warning_time_switch - extra_black_screen))
@@ -104,6 +106,11 @@ func _physics_process(delta):
 
 
 func _on_SoulSwitchTimer_timeout():
+	$SoulSwitchTimer.stop()
+	var time_per_soul_switch = copy_times_per_soul_switch.pop_front()
+	$SoulSwitchTimer.set_wait_time(time_per_soul_switch)
+	$SoulSwitchTimer.start()
+	
 	print("switch")
 	if person == "player1":
 		person = "player2"
@@ -177,6 +184,7 @@ func evaluate_winner():
 		print("Player 1 (on the left) won")
 
 func new_round():
+	copy_times_per_soul_switch = [] + times_per_soul_switch
 	person = "player1"
 	
 	score = {
@@ -194,7 +202,9 @@ func new_round():
 	$RoundTimer.start()
 	
 	$SoulSwitchTimer.stop()
+	var time_per_soul_switch = copy_times_per_soul_switch.pop_front()
 	$SoulSwitchTimer.set_wait_time(time_per_soul_switch)
+	$SoulSwitchTimer.one_shot = true
 	$SoulSwitchTimer.start()
 
 func _on_RoundTimer_timeout():
