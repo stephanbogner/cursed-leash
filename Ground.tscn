@@ -27,20 +27,20 @@ __meta__ = {
 mode = 1
 
 [node name="Left" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( -1864, -8 )
+position = Vector2( -2124, -12 )
 shape = SubResource( 4 )
 
 [node name="Top" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( -0.631592, -1095.94 )
+position = Vector2( 3.36841, -1275.94 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
 [node name="Right" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( 1864, 0 )
+position = Vector2( 2120, 0 )
 shape = SubResource( 4 )
 
 [node name="Bottom" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( -0.631592, 1107.7 )
+position = Vector2( -0.631592, 1275.7 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
