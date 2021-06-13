@@ -82,6 +82,9 @@ polygon = PoolVector2Array( -252.689, -827.893, -259.768, -819.398, -252.689, -8
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
 polygon = PoolVector2Array( -372.271, -915.515, -371.676, -881.622, -328.865, -873.892, -319.351, -889.352, -327.081, -912.542 )
 
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -933.685, -926.58, -934.807, -905.814, -893.276, -910.866, -880.929, -917.6, -884.858, -925.458, -906.746, -930.509 )
+
 [node name="Umbrellas" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
 collision_layer = 7
 collision_mask = 7
