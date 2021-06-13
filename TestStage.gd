@@ -7,6 +7,7 @@ extends Node2D
 
 signal invert_screen_signal
 
+var time_per_round = 60
 var warning_time_switch = 5
 var invert_screen = false
 var Collectible = preload("res://Collectible.tscn")
@@ -40,11 +41,12 @@ var sound_switch = preload("res://sounds/Curse switch.ogg")
 func _ready():
 	place_loot(160)
 	update_avatars(false)
+	$RoundTimer.set_wait_time(time_per_round)
+	$RoundTimer.one_shot = true
+	$RoundTimer.start()
+	
 	$SoulSwitchTimer.set_wait_time(30)
 	$SoulSwitchTimer.start()
-	
-	$LootDropTimer.set_wait_time(3)
-	$LootDropTimer.start()
 	
 	rope = Rope.instance()
 	$RopeContainer.add_child(rope)
@@ -52,6 +54,11 @@ func _ready():
 	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
 
 func _physics_process(delta):
+	var round_time_left = $RoundTimer.get_time_left()
+	var fraction_left = round_time_left/time_per_round
+	$Cam/CanvasLayer/Interface/TimeBar.set_value(fraction_left)
+	print(fraction_left)
+	
 	var time_left = $SoulSwitchTimer.get_time_left()
 	#print(time_left)
 	if time_left < warning_time_switch:
