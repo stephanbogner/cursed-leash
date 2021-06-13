@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://textures/lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21 _adjusted.jpg" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.0
 height = 90.0
+
+[sub_resource type="CircleShape2D" id=3]
 
 [node name="Ground" type="Node2D"]
 
@@ -15,10 +19,122 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Umbrellas" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+[node name="Beach lounger" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
 mode = 1
 
+[node name="Baywatch" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( 746.662, -808.117, 751.702, -751.42, 741.622, -731.261, 721.464, -709.843, 734.063, -639.287, 807.138, -649.366, 805.878, -665.745, 820.997, -672.045, 810.918, -752.68, 784.46, -755.2, 778.16, -810.636 )
+
+[node name="Toilets" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -537.258, -481.396, -535.576, -458.692, -591.075, -456.169, -588.553, -409.079, -434.669, -417.488, -438.032, -483.078 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -1919, -751.5, -1904.5, -714, -1905, -706, -1886.5, -703, -1885, -715, -1902.5, -751.5 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -1351.28, -763.383, -1353.17, -742.617, -1356.47, -736.954, -1354.11, -719.492, -1343.73, -710.526, -1293.23, -715.245, -1270.11, -722.324, -1269.64, -764.798, -1285.21, -776.125, -1300.78, -772.821, -1305.03, -763.854 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -1701.12, -1079.75, -1722.47, -1062.89, -1724.34, -1049.78, -1717.6, -1045.28, -1705.61, -1043.41, -1680.89, -1063.64, -1680.14, -1076, -1687.63, -1079.75 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -1652.42, -1083.12, -1653.92, -1068.13, -1648.68, -1056.15, -1635.94, -1051.28, -1618.34, -1053.9, -1610.47, -1067.38, -1614.22, -1084.99, -1628.08, -1090.98, -1643.06, -1089.86 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -1114.26, -761.491, -1116.14, -721.786, -1119.88, -714.294, -1110.14, -706.054, -1102.65, -712.796, -1094.79, -717.291, -1092.16, -754.749 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -920.318, -768.514, -916.076, -727.855, -921.025, -717.602, -911.126, -712.652, -898.398, -723.612, -900.873, -760.736, -911.479, -769.574 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -700.301, -769.824, -690.76, -731.66, -692.444, -721.838, -680.658, -719.032, -675.046, -728.573, -675.326, -741.481, -680.378, -765.614, -691.322, -772.91 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -252.689, -827.893, -259.768, -819.398, -252.689, -809.959, -244.194, -799.105, -216.821, -781.643, -208.326, -781.643, -212.574, -793.913, -235.227, -813.735, -241.834, -825.061 )
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach lounger"]
+polygon = PoolVector2Array( -372.271, -915.515, -371.676, -881.622, -328.865, -873.892, -319.351, -889.352, -327.081, -912.542 )
+
+[node name="Umbrellas" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1836.41, -741.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1734.41, -744.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1550.41, -750.041 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1522.41, -794.041 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1446.41, -750.041 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1228.41, -756.041 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -1034.41, -758.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -825.906, -760.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -601.906, -772.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -637.906, -760.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( -621.906, -724.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( 1158.09, -788.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( 1290.09, -796.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( 1398.09, -792.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( 1530.09, -796.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+position = Vector2( 1634.09, -800.541 )
+shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+polygon = PoolVector2Array( 1929.48, -1039.44, 1900.97, -1027.86, 1885.83, -1028.75, 1881.37, -1002.02, 1893.85, -987.766, 1915.23, -973.511, 1947.3, -969.948, 1947.3, -1042.11 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
+polygon = PoolVector2Array( 1697.85, -1099.13, 1696.96, -1046.56, 1721.01, -1027.86, 1745.07, -1037.66, 1770.01, -1034.09, 1800.3, -1040.33, 1814.56, -1053.69, 1813.66, -1094.67 )
+
 [node name="Beach wall" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
 mode = 1
 
 [node name="Left wall" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach wall"]
@@ -29,6 +145,34 @@ polygon = PoolVector2Array( -109.664, -369.431, -106.486, -383.204, -114.432, -3
 
 [node name="Right wall" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Beach wall"]
 polygon = PoolVector2Array( 317.132, -375.289, 312.364, -395.419, 298.591, -408.132, 277.932, -408.662, 266.807, -402.305, 255.683, -392.24, 251.445, -380.056, 252.505, -367.873, 259.391, -354.1, 267.867, -347.213, 287.467, -342.445, 307.067, -350.921, 327.726, -362.046, 345.208, -364.694, 360.57, -360.456, 380.17, -348.802, 404.008, -339.267, 425.727, -339.267, 458.04, -344.035, 491.413, -353.57, 502.111, -359.258, 526.376, -372.11, 572.992, -381.646, 616.96, -378.997, 648.214, -363.635, 693.241, -337.678, 718.139, -327.613, 750.982, -328.672, 782.236, -345.094, 814, -365, 857, -375.5, 898.5, -374.5, 933.5, -359, 965.5, -337.5, 1002, -324.5, 1038.5, -320.5, 1075.5, -323, 1109, -334.5, 1145, -348, 1195.5, -359.5, 1276.09, -362.48, 1332.44, -352.162, 1377.68, -337.875, 1417.37, -318.827, 1450.7, -314.064, 1486.42, -320.414, 1526.9, -342.638, 1584.05, -355.337, 1638.02, -348.987, 1675.32, -334.701, 1721.36, -309.302, 1767.39, -300.571, 1804.69, -306.921, 1838.82, -320.414, 1884.06, -341.844, 1921.37, -350.575, 1977.72, -345.019, 1985.66, -379.942, 1916.61, -372.798, 1884.86, -364.068, 1840.17, -346.538, 1787.31, -336.156, 1742.48, -337.572, 1695.28, -346.066, 1648.09, -366.36, 1617.88, -383.349, 1585.79, -388.541, 1548.98, -378.158, 1506.98, -356.921, 1477.25, -349.842, 1426.28, -348.898, 1398.9, -353.617, 1350.77, -370.607, 1306.17, -387.341, 1272.84, -393.691, 1230.38, -396.468, 1190.29, -392.5, 1149.81, -377.42, 1108.54, -357.577, 1092.45, -346.397, 1063.08, -340.724, 1018.03, -342.059, 984.326, -352.07, 956.962, -371.759, 919.253, -400.792, 892.201, -409.828, 853.1, -409.407, 819.884, -399.737, 790.033, -377.873, 758.078, -358.953, 728.647, -352.226, 701.557, -355.697, 673.148, -371.987, 652.125, -393.43, 631.524, -408.566, 590.74, -414.452, 548, -401, 502, -383, 472.5, -375.5, 434.5, -372.5, 406.5, -370.5, 358.5, -380.5, 336.5, -381.5 )
+
+[node name="White poles" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -1599.69, -202.488, -1581.73, -197.437, -1583.98, -191.825, -1601.94, -193.509 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -1497.83, -265.667, -1493.83, -267.002, -1480.48, -261.997, -1479.48, -257.992, -1482.48, -254.655, -1498.83, -256.657 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -1375.43, -273.718, -1372.51, -277.691, -1368.54, -276.367, -1356.62, -271.6, -1355.56, -268.951, -1358.74, -266.832, -1372.51, -267.627 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -1250.05, -277.127, -1247.22, -280.309, -1241.92, -279.602, -1235.2, -275.359, -1234.85, -272.177, -1238.03, -268.288, -1248.99, -270.056 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -1122.6, -282.597, -1110.94, -277.565, -1109.88, -273.857, -1113.86, -271.208, -1124.72, -272.268, -1127.1, -277.83 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -883.297, -216.047, -874.963, -212.476, -874.566, -209.301, -878.535, -206.523, -888.059, -208.11, -889.646, -212.476, -887.265, -216.841 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( -359.223, -400.123, -348.734, -395.628, -344.24, -385.14, -347.985, -380.645, -356.226, -387.388, -362.219, -391.883 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/White poles"]
+polygon = PoolVector2Array( 338.875, -407.507, 341.703, -399.022, 330.39, -387.708, 324.733, -391.951, 331.097, -405.386 )
 
 [node name="Cars" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
 collision_layer = 7
@@ -101,12 +245,254 @@ polygon = PoolVector2Array( -1359.73, -234.365, -1374.83, -226.814, -1380.02, -2
 polygon = PoolVector2Array( -1535, -126, -1558, -126, -1571, -119.5, -1576.5, -102, -1572, -82, -1556, -74, -1521, -74, -1458, -76.5, -1423, -78, -1416.5, -92.5, -1416.5, -118.5, -1428, -127.5, -1450.5, -128.5 )
 
 [node name="People" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
 mode = 1
 
 [node name="Palms" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
 mode = 1
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -800.027, 145.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -924.027, 101.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1092.03, 141.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1498.53, 143.731 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1666.53, 116.731 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1742.53, -219.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1822.53, -411.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1622.53, -463.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1646.53, -263.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1414.53, -491.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -1270.53, -535.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -962.527, -551.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -834.527, -463.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -674.527, -663.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -702.527, -255.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -906.527, -303.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -416.027, -492.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -212.027, -528.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -96.0271, -548.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -24.0271, -472.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 155.973, -632.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 423.973, -644.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 423.973, -484.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 463.973, -412.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 723.973, -536.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 939.973, -476.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1135.97, -520.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1207.97, -460.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1403.97, -496.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1511.97, -436.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1667.97, -456.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1671.97, -624.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1819.97, -656.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D40" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1591.97, -301.769 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D41" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1707.97, -229.769 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D42" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1859.97, -257.769 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D43" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1747.97, 258.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D44" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1507.97, 178.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D45" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1311.97, 206.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D46" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1143.97, 302.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D47" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 999.973, 254.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D48" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 783.973, 270.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D49" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 559.973, 294.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D50" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 331.973, 318.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D51" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 207.973, 462.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D52" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 295.973, 574.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D53" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 231.973, 726.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D54" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 331.973, 818.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D55" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 355.973, 982.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D56" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -52.0271, 958.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D57" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -72.0271, 826.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D58" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -80.0271, 758.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D59" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( -80.0271, 698.231 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 643.973, -300.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 767.973, -268.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 927.973, -248.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1015.97, -240.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1147.97, -232.269 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Palms"]
+position = Vector2( 1423.97, -232.269 )
+shape = SubResource( 3 )
+
 [node name="Yellow barriers" type="RigidBody2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21"]
+collision_layer = 7
+collision_mask = 7
 mode = 1
 
 [node name="Left" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Yellow barriers"]
@@ -138,3 +524,27 @@ polygon = PoolVector2Array( -873.93, -42.7663, -769.049, 68.1084, -751.069, 211.
 
 [node name="Buildings right" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
 polygon = PoolVector2Array( 471.434, 1138.77, 357.012, 473.428, 919.972, 404.637, 982.199, 433.228, 1074.7, 428.182, 1116.74, 450.046, 1979.5, 342.411, 1990.75, 1161.78 )
+
+[node name="Planter" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 255.67, 476.355, 323.552, 467.869, 419.546, 1114.19, 335.546, 1114.19 )
+
+[node name="Planter2" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 343.856, 353.214, 349.742, 429.735, 564.171, 405.349, 554.921, 336.396 )
+
+[node name="Planter3" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 667.121, 322.421, 676.465, 373.812, 876.691, 352.455, 880.695, 323.088, 945.435, 314.412, 946.77, 287.715 )
+
+[node name="Umbrellas" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 837.934, 218.224, 875.774, 267.837, 947.251, 338.473, 943.046, 358.654, 923.705, 354.45, 917.819, 339.313, 860.638, 285.496, 825.321, 235.042, 826.161, 221.588 )
+
+[node name="Tent" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 1159.59, 245.635, 1175.85, 416.048, 1355.46, 397.663, 1334.95, 227.251 )
+
+[node name="Tent2" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 1478.66, 245.34, 1488.77, 339.882, 1459.04, 338.099, 1464.99, 375.559, 1502.45, 379.126, 1678.45, 358.315, 1664.77, 232.259 )
+
+[node name="Umbrellas2" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 1543.93, 195.547, 1539.44, 206.21, 1548.42, 215.751, 1948.58, 196.108, 1953.07, 169.73, 1734.19, 175.903 )
+
+[node name="Planter4" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Buildings"]
+polygon = PoolVector2Array( 1039.9, 332.162, 1020.86, 348.036, 990.695, 355.18, 996.251, 398.039, 1101.81, 385.34, 1108.96, 419.469, 1173.25, 413.913, 1162.13, 282.159, 1124.04, 294.065, 1086.73, 315.495 )
