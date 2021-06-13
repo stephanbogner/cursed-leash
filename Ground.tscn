@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 200, 2069.15 )
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=5]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 25.0
@@ -14,6 +14,7 @@ height = 90.0
 [sub_resource type="CircleShape2D" id=3]
 
 [node name="Ground" type="Node2D"]
+position = Vector2( -22.6533, 165.673 )
 
 [node name="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -26,11 +27,11 @@ __meta__ = {
 mode = 1
 
 [node name="Left" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( -1860, 0 )
+position = Vector2( -1864, -8 )
 shape = SubResource( 4 )
 
 [node name="Top" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( -0.631592, -1015.94 )
+position = Vector2( -0.631592, -1095.94 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
@@ -39,7 +40,7 @@ position = Vector2( 1864, 0 )
 shape = SubResource( 4 )
 
 [node name="Bottom" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Map bounds"]
-position = Vector2( -0.631592, 1023.7 )
+position = Vector2( -0.631592, 1107.7 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
@@ -88,67 +89,67 @@ mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1836.41, -741.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1734.41, -744.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1550.41, -750.041 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1522.41, -794.041 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1446.41, -750.041 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1228.41, -756.041 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -1034.41, -758.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -825.906, -760.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -601.906, -772.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -637.906, -760.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( -621.906, -724.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( 1158.09, -788.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( 1290.09, -796.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( 1398.09, -792.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( 1530.09, -796.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 position = Vector2( 1634.09, -800.541 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21/Umbrellas"]
 polygon = PoolVector2Array( 1929.48, -1039.44, 1900.97, -1027.86, 1885.83, -1028.75, 1881.37, -1002.02, 1893.85, -987.766, 1915.23, -973.511, 1947.3, -969.948, 1947.3, -1042.11 )
