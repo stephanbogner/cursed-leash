@@ -237,9 +237,9 @@ texture = ExtResource( 9 )
 
 [connection signal="invert_screen_signal" from="." to="." method="_on_TestStage_invert_screen_signal"]
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
-[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]

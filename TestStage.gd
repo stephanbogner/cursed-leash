@@ -7,8 +7,9 @@ extends Node2D
 
 signal invert_screen_signal
 
-var time_per_round = 10
-var times_per_soul_switch = [14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 6, 6, 6, 6]
+var time_per_round = 60
+#var times_per_soul_switch = [14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 6, 6, 6, 6]
+var times_per_soul_switch = [14, 14, 12, 12, 4, 999]
 var copy_times_per_soul_switch
 var warning_time_switch = 5
 var invert_screen = false
@@ -58,24 +59,36 @@ var current_stage = "screen1"
 # Via https://www.reddit.com/r/godot/comments/9jjro2/how_to_detet_mouse_clicks_in_ui_element/
 func _input(event):
 	if event is InputEventMouseButton && event.pressed == true:
-		print("clicked")
-		playRandomSound(sounds_click)
-		if current_stage == "screen1":
-			$Cam/CanvasLayer/Intro/Screen1.hide()
-			current_stage = "screen2"
-		elif current_stage == "screen2":
-			$Cam/CanvasLayer/Intro/Screen2.hide()
-			current_stage = "screen3"
-		elif current_stage == "screen3":
-			$Cam/CanvasLayer/Intro.hide()
-			$Cam/CanvasLayer/Intro/Screen1.show()
-			$Cam/CanvasLayer/Intro/Screen2.show()
-			current_stage = "game"
-			new_round()
-		elif current_stage == "round-over":
-			current_stage = "game"
-			Cam.get_node("ScreenShake").start(0.3, 24, 35, 0)
-			new_round()
+		interface_input()
+
+func screenShakeAndRumble(duration = 0.2, frequency = 15, amplitude = 16, priority = 0):
+	Cam.get_node("ScreenShake").start(duration, frequency, amplitude, priority)
+	var amplitude_small_motor = clamp(amplitude/8, 0, 1)
+	var amplitude_large_motor = clamp(amplitude/20, 0, 1)
+	print(amplitude_small_motor, amplitude_large_motor)
+	Input.start_joy_vibration(0, amplitude_small_motor, amplitude_large_motor, min(0.05, duration) )
+	pass
+
+func interface_input():
+	screenShakeAndRumble(0.05, 8, 18, 0)
+	print("clicked")
+	playRandomSound(sounds_click)
+	if current_stage == "screen1":
+		$Cam/CanvasLayer/Intro/Screen1.hide()
+		current_stage = "screen2"
+	elif current_stage == "screen2":
+		$Cam/CanvasLayer/Intro/Screen2.hide()
+		current_stage = "screen3"
+	elif current_stage == "screen3":
+		$Cam/CanvasLayer/Intro.hide()
+		$Cam/CanvasLayer/Intro/Screen1.show()
+		$Cam/CanvasLayer/Intro/Screen2.show()
+		current_stage = "game"
+		new_round()
+	elif current_stage == "round-over":
+		current_stage = "game"
+		screenShakeAndRumble(0.3, 24, 35)
+		new_round()
 
 func _ready():
 	#new_round()
@@ -87,6 +100,9 @@ func _ready():
 	#$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		interface_input()
+	
 	if current_stage == "game":
 		var round_time_left = $RoundTimer.get_time_left()
 		var fraction_left = round_time_left/time_per_round
@@ -94,14 +110,17 @@ func _physics_process(delta):
 		
 		var time_left = $SoulSwitchTimer.get_time_left()
 		
+		var length_of_switch_sound = 1.5
+		if time_left < length_of_switch_sound:
+			if switchSoundPlayed == false:
+				switchSoundPlayed = true
+				playSound(sound_switch)
+		
 		if time_left < warning_time_switch:
 			var extra_black_screen = 0.2
 			var inverted_fraction = max(0,(time_left - extra_black_screen)/(warning_time_switch - extra_black_screen))
 			var fraction = 1 - inverted_fraction
 			if time_left < extra_black_screen:
-				if switchSoundPlayed == false:
-					switchSoundPlayed = true
-					playSound(sound_switch)
 				if invert_screen == false:
 					emit_signal("invert_screen_signal", true)
 					print("now true")
@@ -145,7 +164,8 @@ func check_input_primary(player):
 			rope.pull()
 			updatePowerBars()
 			playRandomSound(barkZips)
-			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
+			
+			screenShakeAndRumble(0.05, 15, 24, 0)
 	
 	# If person is not played by player -> dog
 	if person != player:
@@ -155,7 +175,7 @@ func check_input_primary(player):
 			updatePowerBars()
 			playSound(sound_beast_mode)
 			$Dog.activate_beast_mode()
-			Cam.get_node("ScreenShake").start(0.05, 8, 18, 0)
+			screenShakeAndRumble(0.05, 8, 18, 0)
 	
 #func _input(event):
 #	if event is InputEventMouseButton and !event.is_pressed():
@@ -231,7 +251,7 @@ func _on_TestStage_invert_screen_signal(boolean):
 	if boolean == true:
 		update_avatars(true)
 		playSound(sound_zt)
-		Cam.get_node("ScreenShake").start(0.05, 18, 33, 0)
+		screenShakeAndRumble(0.05, 18, 33, 0)
 	else:
 		update_avatars(false)
 
