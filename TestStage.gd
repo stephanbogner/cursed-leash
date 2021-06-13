@@ -112,7 +112,9 @@ func interface_input():
 
 func _ready():
 	#new_round()
-	$Cam/CanvasLayer/Intro/Screen1/tex/button_reply_collision/button_reply/AnimationPlayer.play("Button_Cycle")
+	$Cam/CanvasLayer/Intro/Screen1/text/button/animpl.play("cycle")
+	$Cam/CanvasLayer/Intro/Screen2/text/button/animpl.play("cycle")
+	$Cam/CanvasLayer/Intro/Screen3/text/button/animpl.play("cycle")
 	$Cam/ShaderColor.hide()
 	rope = Rope.instance()
 	$RopeContainer.add_child(rope)

@@ -1,16 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://intro/Cursed title 3.png" type="Texture" id=1]
 [ext_resource path="res://intro/Cursed button reply 354x154px.png" type="Texture" id=2]
 [ext_resource path="res://intro/Cursed reply.png" type="Texture" id=3]
 [ext_resource path="res://intro/Cursed attachments.png" type="Texture" id=4]
+[ext_resource path="res://intro/Cursed button attachments 604x154px.png" type="Texture" id=5]
+[ext_resource path="res://intro/Cursed button send 354x154px.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 35.0022, 15.8785 )
-
-[sub_resource type="Animation" id=1]
-resource_name = "Button_Cycle"
-length = 0.8
+[sub_resource type="Animation" id=4]
+resource_name = "cycle"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -22,7 +20,40 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 0 ]
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "cycle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "cycle"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0, 3 ]
 }
 
 [node name="Intro" type="Control"]
@@ -49,6 +80,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="button" type="Sprite" parent="Screen3/text"]
+position = Vector2( 211.833, 144.882 )
+scale = Vector2( 0.220197, 0.220197 )
+texture = ExtResource( 6 )
+hframes = 4
+frame = 3
+
+[node name="animpl" type="AnimationPlayer" parent="Screen3/text/button"]
+anims/cycle = SubResource( 4 )
+
 [node name="Screen2" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,6 +102,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button" type="Sprite" parent="Screen2/text"]
+position = Vector2( 242.377, 147.329 )
+scale = Vector2( 0.215848, 0.215848 )
+texture = ExtResource( 5 )
+hframes = 4
+frame = 2
+
+[node name="animpl" type="AnimationPlayer" parent="Screen2/text/button"]
+anims/cycle = SubResource( 3 )
 
 [node name="Screen1" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -69,7 +123,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tex" type="TextureRect" parent="Screen1"]
+[node name="text" type="TextureRect" parent="Screen1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
@@ -78,21 +132,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="button_reply_collision" type="RigidBody2D" parent="Screen1/tex"]
-input_pickable = true
-collision_layer = 524288
-collision_mask = 0
-mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Screen1/tex/button_reply_collision"]
-position = Vector2( 220.04, 94.736 )
-shape = SubResource( 2 )
-
-[node name="button_reply" type="Sprite" parent="Screen1/tex/button_reply_collision"]
-position = Vector2( 220.067, 94.8037 )
-scale = Vector2( 0.200659, 0.200659 )
+[node name="button" type="Sprite" parent="Screen1/text"]
+position = Vector2( 232.972, 101.019 )
+scale = Vector2( 0.293785, 0.293785 )
 texture = ExtResource( 2 )
-hframes = 3
+hframes = 4
+frame = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Screen1/tex/button_reply_collision/button_reply"]
-anims/Button_Cycle = SubResource( 1 )
+[node name="animpl" type="AnimationPlayer" parent="Screen1/text/button"]
+anims/cycle = SubResource( 1 )
