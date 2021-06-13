@@ -7,7 +7,7 @@ extends Node2D
 
 signal invert_screen_signal
 
-var time_per_round = 90
+var time_per_round = 10
 var times_per_soul_switch = [14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 6, 6, 6, 6]
 var copy_times_per_soul_switch
 var warning_time_switch = 5
@@ -42,55 +42,92 @@ var barkZips = [
 	preload("res://sounds/Bark zip 5.ogg")
 ]
 
+var sounds_click = [
+	preload("res://sounds/Click 1.ogg"),
+	preload("res://sounds/Click 2.ogg"),
+	preload("res://sounds/Click 3.ogg"),
+]
+
+var switchSoundPlayed = false
 var sound_zt = preload("res://sounds/Curse zt.ogg")
 var sound_switch = preload("res://sounds/Curse switch.ogg")
 var sound_beast_mode = preload("res://sounds/Bark high pitched.ogg")
 
+var current_stage = "screen1"
+
+# Via https://www.reddit.com/r/godot/comments/9jjro2/how_to_detet_mouse_clicks_in_ui_element/
+func _input(event):
+	if event is InputEventMouseButton && event.pressed == true:
+		print("clicked")
+		playRandomSound(sounds_click)
+		if current_stage == "screen1":
+			$Cam/CanvasLayer/Intro/Screen1.hide()
+			current_stage = "screen2"
+		elif current_stage == "screen2":
+			$Cam/CanvasLayer/Intro/Screen2.hide()
+			current_stage = "screen3"
+		elif current_stage == "screen3":
+			$Cam/CanvasLayer/Intro.hide()
+			$Cam/CanvasLayer/Intro/Screen1.show()
+			$Cam/CanvasLayer/Intro/Screen2.show()
+			current_stage = "game"
+			new_round()
+		elif current_stage == "round-over":
+			current_stage = "game"
+			Cam.get_node("ScreenShake").start(0.3, 24, 35, 0)
+			new_round()
+
 func _ready():
-	new_round()
-	
+	#new_round()
+	$Cam/CanvasLayer/Intro/Screen1/tex/button_reply_collision/button_reply/AnimationPlayer.play("Button_Cycle")
+	$Cam/ShaderColor.hide()
 	rope = Rope.instance()
 	$RopeContainer.add_child(rope)
 	rope.spawn(Person, Dog)
 	#$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
 
 func _physics_process(delta):
-	var round_time_left = $RoundTimer.get_time_left()
-	var fraction_left = round_time_left/time_per_round
-	$Cam/CanvasLayer/Interface/TimeBar.set_value(fraction_left)
-	
-	var time_left = $SoulSwitchTimer.get_time_left()
-	
-	if time_left < warning_time_switch:
-		var extra_black_screen = 0.2
-		var inverted_fraction = max(0,(time_left - extra_black_screen)/(warning_time_switch - extra_black_screen))
-		var fraction = 1 - inverted_fraction
-		if time_left < extra_black_screen:
-			if invert_screen == false:
-				emit_signal("invert_screen_signal", true)
-				print("now true")
-			invert_screen = true
-		else:
-			var helper_invert = sin(fraction * fraction * fraction * 80);
-			if helper_invert < 0:
+	if current_stage == "game":
+		var round_time_left = $RoundTimer.get_time_left()
+		var fraction_left = round_time_left/time_per_round
+		$Cam/CanvasLayer/Interface/TimeBar.set_value(fraction_left)
+		
+		var time_left = $SoulSwitchTimer.get_time_left()
+		
+		if time_left < warning_time_switch:
+			var extra_black_screen = 0.2
+			var inverted_fraction = max(0,(time_left - extra_black_screen)/(warning_time_switch - extra_black_screen))
+			var fraction = 1 - inverted_fraction
+			if time_left < extra_black_screen:
+				if switchSoundPlayed == false:
+					switchSoundPlayed = true
+					playSound(sound_switch)
 				if invert_screen == false:
 					emit_signal("invert_screen_signal", true)
 					print("now true")
 				invert_screen = true
 			else:
-				if invert_screen == true:
-					emit_signal("invert_screen_signal", false)
-					print("now false")
-				invert_screen = false
-		#$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", fraction/10)
-		#$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0.2)
-		#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
-	
-	if Input.is_action_just_pressed("player1_action_primary"):
-		check_input_primary("player1")
+				var helper_invert = sin(fraction * fraction * fraction * 80);
+				if helper_invert < 0:
+					if invert_screen == false:
+						emit_signal("invert_screen_signal", true)
+						print("now true")
+					invert_screen = true
+				else:
+					if invert_screen == true:
+						emit_signal("invert_screen_signal", false)
+						print("now false")
+					invert_screen = false
+			#$Cam/ShaderGlitch.get_material().set_shader_param("shake_power", fraction/10)
+			#$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0.2)
+			#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
 		
-	if Input.is_action_just_pressed("player2_action_primary"):
-		check_input_primary("player2")
+	if current_stage == "game" or current_stage == "round-over":
+		if Input.is_action_just_pressed("player1_action_primary"):
+			check_input_primary("player1")
+			
+		if Input.is_action_just_pressed("player2_action_primary"):
+			check_input_primary("player2")
 		
 	var person_position = Person.get_position()
 	var dog_position = Dog.get_position()
@@ -107,8 +144,7 @@ func check_input_primary(player):
 			power[player] -= cost_rope_pull
 			rope.pull()
 			updatePowerBars()
-			var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
-			playSound(selectedSound)
+			playRandomSound(barkZips)
 			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 	
 	# If person is not played by player -> dog
@@ -134,12 +170,13 @@ func check_input_primary(player):
 #			end_pos = Vector2.ZERO
 
 func updatePowerBars():
-	print(power)
+	#print(power)
 	$Cam/CanvasLayer/Interface/Power_player1.set_value(power.player1)
 	$Cam/CanvasLayer/Interface/Power_player2.set_value(power.player2)
 
 func _on_SoulSwitchTimer_timeout():
 	$SoulSwitchTimer.stop()
+	switchSoundPlayed = false
 	var time_per_soul_switch = copy_times_per_soul_switch.pop_front()
 	$SoulSwitchTimer.set_wait_time(time_per_soul_switch)
 	$SoulSwitchTimer.start()
@@ -190,7 +227,6 @@ func _on_Dog_scored(player):
 
 func _on_TestStage_invert_screen_signal(boolean):
 	$Cam/ShaderColor.visible = boolean
-	$Cam/ShaderGlitch.visible = boolean
 	
 	if boolean == true:
 		update_avatars(true)
@@ -211,6 +247,10 @@ func update_avatars(inverted):
 		$Cam/CanvasLayer/Interface/person_player2.visible = person != "player2"
 		$Cam/CanvasLayer/Interface/pug_player2.visible = person == "player2"
 
+func playRandomSound(sounds):
+	var selectedSound = sounds[randi() % sounds.size()]
+	playSound(selectedSound)
+
 func playSound(sound):
 	var ztPlayer = AudioStreamPlayer.new()
 	add_child(ztPlayer)
@@ -221,14 +261,24 @@ func playSound(sound):
 	ztPlayer.queue_free()
 
 func evaluate_winner():
+	$Cam/CanvasLayer/Winner/P1win.hide()
+	$Cam/CanvasLayer/Winner/P2win.hide()
+	$Cam/CanvasLayer/Winner/Tie.hide()
 	if score.player1 == score.player2:
+		$Cam/CanvasLayer/Winner/Tie.show()
 		print("Tie")
-	elif score.player1 < score.player2:
-		print("Player 2 (on the right) won")
-	else:
+	elif score.player1 > score.player2:
+		$Cam/CanvasLayer/Winner/P1win.show()
 		print("Player 1 (on the left) won")
+	else:
+		$Cam/CanvasLayer/Winner/P2win.show()
+		print("Player 2 (on the right) won")
+	$Cam/CanvasLayer/Winner.show()
+	current_stage = "round-over"
+	$SoulSwitchTimer.stop()
 
 func new_round():
+	$Cam/CanvasLayer/Winner.hide()
 	copy_times_per_soul_switch = [] + times_per_soul_switch
 	person = "player1"
 	
@@ -261,7 +311,7 @@ func new_round():
 
 func _on_RoundTimer_timeout():
 	evaluate_winner()
-	new_round()
+	#new_round()
 	pass # Replace with function body.
 
 

@@ -70,7 +70,7 @@ func _physics_process(delta):
 	#motion = move_and_slide(motion, UP)
 
 func activate_beast_mode():
-	motion_scale = 7
+	motion_scale = 5
 	var timer = Timer.new() #https://gdscript.com/solutions/godot-timing-tutorial/
 	timer.autostart = true
 	timer.one_shot = true
