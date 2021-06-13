@@ -27,6 +27,11 @@ var score = {
 	"player2": 0
 }
 
+var power = {
+	"player1": 100.0,
+	"player2": 100.0
+}
+
 var person = "player1"
 
 var barkZips = [
@@ -82,11 +87,24 @@ func _physics_process(delta):
 		#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
 	
 	if Input.is_action_just_pressed("player1_action_primary"):
-		rope.pull()
-		#Dog.get_node("C/reaction-zip").play()
-		var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
-		playSound(selectedSound)
-		Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
+		if person == "player1" and power["player1"] >= 33:
+			power["player1"] -= 33
+			rope.pull()
+			updatePowerBars()
+			#Dog.get_node("C/reaction-zip").play()
+			var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
+			playSound(selectedSound)
+			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
+			
+	if Input.is_action_just_pressed("player2_action_primary"):
+		if person == "player2" and power["player2"] >= 33:
+			power["player2"] -= 33
+			rope.pull()
+			updatePowerBars()
+			#Dog.get_node("C/reaction-zip").play()
+			var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
+			playSound(selectedSound)
+			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
 		
 	var person_position = Person.get_position()
 	var dog_position = Dog.get_position()
@@ -104,6 +122,9 @@ func _physics_process(delta):
 #			start_pos = Vector2.ZERO
 #			end_pos = Vector2.ZERO
 
+func updatePowerBars():
+	$Cam/CanvasLayer/Interface/Power_player1.set_value(power.player1)
+	$Cam/CanvasLayer/Interface/Power_player2.set_value(power.player2)
 
 func _on_SoulSwitchTimer_timeout():
 	$SoulSwitchTimer.stop()
@@ -203,6 +224,13 @@ func new_round():
 		"player1": 0,
 		"player2": 0
 	}
+	
+	power = {
+		"player1": 100,
+		"player2": 100
+	}
+	updatePowerBars()
+	
 	updateScoreUI()
 	
 	place_loot(160)
@@ -223,3 +251,11 @@ func _on_RoundTimer_timeout():
 	evaluate_winner()
 	new_round()
 	pass # Replace with function body.
+
+
+func _on_PowerTimer_timeout():
+	power.player1 += 0.5
+	power.player1 = min(100, power.player1)
+	power.player2 += 0.5
+	power.player2 = min(100, power.player1)
+	updatePowerBars()
