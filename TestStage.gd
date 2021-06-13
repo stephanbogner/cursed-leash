@@ -106,7 +106,7 @@ func interface_input():
 		current_stage = "explanation"
 		updateScoreUI()
 		update_avatars()
-		showBubblesFor(10)
+		showBubblesFor(8)
 	elif current_stage == "round-over":
 		current_stage = "game"
 		screenShakeAndRumble(0.3, 24, 35)
@@ -114,6 +114,7 @@ func interface_input():
 
 func _ready():
 	place_loot(200)
+	$Cam/CanvasLayer/Intro/Screen1/text/headline/animpl.play("cycle")
 	$Cam/CanvasLayer/Intro/Screen1/text/button/animpl.play("cycle")
 	$Cam/CanvasLayer/Intro/Screen2/text/button/animpl.play("cycle")
 	$Cam/CanvasLayer/Intro/Screen3/text/button/animpl.play("cycle")
@@ -241,7 +242,7 @@ func _on_SoulSwitchTimer_timeout():
 	var time_per_soul_switch = copy_times_per_soul_switch.pop_front()
 	$SoulSwitchTimer.set_wait_time(time_per_soul_switch)
 	$SoulSwitchTimer.start()
-	
+	#showBubblesFor(3)
 	rope.chaos()
 	#var radians = $Dog.global_position.angle_to($Person.global_position)
 	#var radiansForPerson = radians - PI / 2
@@ -282,8 +283,9 @@ func updateScoreUI():
 	print(score)
 
 func _on_Dog_scored(player):
-	score[player] += 1
-	updateScoreUI()
+	if current_stage == "game":
+		score[player] += 1
+		updateScoreUI()
 
 
 func _on_TestStage_invert_screen_signal(boolean):
@@ -339,6 +341,7 @@ func evaluate_winner():
 	$SoulSwitchTimer.stop()
 
 func new_round(leaveLoot = false):
+	$Cam/ShaderColor.hide()
 	$Cam/CanvasLayer/Winner.hide()
 	copy_times_per_soul_switch = [] + times_per_soul_switch
 	person = "player1"
@@ -394,8 +397,8 @@ func showBubblesFor(showFor):
 	$BubbleOverlayTimer.start()
 
 func _on_BubbleOverlayTimer_timeout():
-	new_round(true)
+	if current_stage == "explanation":
+		new_round(true)
+		current_stage = "game"
 	$bubble_dog.hide()
 	$bubble_person.hide()
-	current_stage = "game"
-	pass # Replace with function body.

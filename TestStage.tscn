@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://TestStage.gd" type="Script" id=1]
 [ext_resource path="res://Person.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://Winner.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Bubble love poop.png" type="Texture" id=19]
 [ext_resource path="res://Bubble no poop.png" type="Texture" id=20]
+[ext_resource path="res://sounds/397689__orginaljun__chiptune-loop-episode-04.ogg" type="AudioStream" id=21]
+[ext_resource path="res://sounds/262231__ramston__lebanese-arab-market-busy-people-traffic-music.ogg" type="AudioStream" id=22]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -185,7 +187,6 @@ visible = false
 [node name="SportsCar" type="Sprite" parent="Cars"]
 position = Vector2( 315.009, 1321.47 )
 rotation = 3.0805
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
 [node name="Taxi" type="Sprite" parent="Cars"]
@@ -254,14 +255,20 @@ position = Vector2( 9.00704, 8.51008 )
 scale = Vector2( 629.085, 100.308 )
 texture = ExtResource( 9 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamChiptune" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -20.897
+autoplay = true
+
+[node name="AudioStreamStreet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -5.346
 
 [connection signal="invert_screen_signal" from="." to="." method="_on_TestStage_invert_screen_signal"]
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
-[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
