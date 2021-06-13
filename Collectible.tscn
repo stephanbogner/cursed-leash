@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://poop.png" type="Texture" id=1]
 [ext_resource path="res://Collectible.gd" type="Script" id=2]
+[ext_resource path="res://poop smear 1.png" type="Texture" id=3]
+[ext_resource path="res://CollectibleRigidBody.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.0
@@ -9,15 +11,23 @@ radius = 14.0
 [node name="Collectible" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Collectible" type="RigidBody2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+[node name="CollectibleRigidBody" type="RigidBody2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+mode = 1
 contact_monitor = true
+script = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleRigidBody"]
 shape = SubResource( 1 )
 
-[node name="poop" type="Sprite" parent="Collectible/CollisionShape2D"]
+[node name="poop" type="Sprite" parent="CollectibleRigidBody/CollisionShape2D"]
 position = Vector2( 0, -0.26368 )
 scale = Vector2( 0.604486, 0.604486 )
 texture = ExtResource( 1 )
+
+[node name="smear" type="Sprite" parent="CollectibleRigidBody/CollisionShape2D"]
+visible = false
+position = Vector2( 0.410301, 0.106407 )
+scale = Vector2( 0.291617, 0.291617 )
+texture = ExtResource( 3 )

@@ -32,10 +32,13 @@ func _physics_process(delta):
 	if(colliding_bodies.size() > 0 ):
 		for b in colliding_bodies:
 			var name = b.get_name()
-			if name == "Collectible":
+			if name == "CollectibleRigidBody":
 					emit_signal("scored", in_control)
+					b.smear()
+					#var position = b.global_position
+					#print(position)
 					playSound(sound_eating)
-					b.queue_free()
+					#b.queue_free()
 		#print(colliding_bodies)
 		#pass
 

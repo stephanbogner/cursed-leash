@@ -13,7 +13,6 @@ func _ready():
 	print(randomX, randomY)
 	self.set_global_position(Vector2(randomX, randomY))
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

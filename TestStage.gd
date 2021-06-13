@@ -3,6 +3,7 @@ extends Node2D
 # Layer 1 Person
 # Layer 2 Dog
 # Layer 3 Rope
+# Layer 4 Poop
 
 signal invert_screen_signal
 

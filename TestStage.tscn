@@ -157,7 +157,7 @@ script = ExtResource( 6 )
 [node name="Dog" parent="." instance=ExtResource( 3 )]
 position = Vector2( 625.496, 314.519 )
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 script = ExtResource( 4 )
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]
@@ -240,7 +240,7 @@ texture = ExtResource( 9 )
 
 [connection signal="invert_screen_signal" from="." to="." method="_on_TestStage_invert_screen_signal"]
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
-[connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
-[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
