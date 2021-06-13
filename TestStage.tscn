@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://TestStage.gd" type="Script" id=1]
 [ext_resource path="res://Person.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://cars/SportsCar.png" type="Texture" id=13]
 [ext_resource path="res://cars/Taxi.png" type="Texture" id=14]
 [ext_resource path="res://Interface.tscn" type="PackedScene" id=15]
+[ext_resource path="res://textures/lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21 _adjusted palms.png" type="Texture" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "/*
@@ -153,82 +154,84 @@ position = Vector2( 254.885, 6.2677 )
 
 [node name="RopeContainer" type="Node2D" parent="."]
 
-[node name="Person" parent="." instance=ExtResource( 2 )]
-position = Vector2( 200.653, 377.998 )
-collision_mask = 3
-script = ExtResource( 6 )
-
 [node name="Dog" parent="." instance=ExtResource( 3 )]
 position = Vector2( 625.496, 314.519 )
 collision_layer = 2
 collision_mask = 11
 script = ExtResource( 4 )
 
-[node name="TrashCan" parent="." instance=ExtResource( 5 )]
+[node name="TrashCans" type="Node2D" parent="."]
+
+[node name="TrashCan" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -20.0194, -824.699 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan5" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan5" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( 435.981, -856.699 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan6" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan6" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( 488.981, -844.699 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan7" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan7" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( 1572.98, -1433.7 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan2" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan2" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -702.034, -492.857 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan8" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan8" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -1730.03, -531.857 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan9" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan9" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -2110.03, -767.857 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan10" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan10" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -2616.03, -747.857 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan11" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan11" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -2360.03, 196.143 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan3" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan3" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( 819.498, 373.602 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
-[node name="TrashCan4" parent="." instance=ExtResource( 5 )]
+[node name="TrashCan4" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -191.254, 238.468 )
 collision_layer = 7
 collision_mask = 7
 script = null
+
+[node name="Person" parent="." instance=ExtResource( 2 )]
+position = Vector2( 200.653, 377.998 )
+collision_mask = 3
+script = ExtResource( 6 )
 
 [node name="SoulSwitchTimer" type="Timer" parent="."]
 
@@ -258,6 +261,11 @@ texture = ExtResource( 10 )
 position = Vector2( 148.352, 224.725 )
 rotation = 0.461072
 texture = ExtResource( 11 )
+
+[node name="Palms" type="Sprite" parent="."]
+position = Vector2( 256, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
 
 [node name="Cam" type="Camera2D" parent="."]
 current = true
