@@ -165,19 +165,61 @@ collision_mask = 11
 script = ExtResource( 4 )
 
 [node name="TrashCan" parent="." instance=ExtResource( 5 )]
-position = Vector2( 27.9806, -424.699 )
+position = Vector2( -20.0194, -824.699 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 435.981, -856.699 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 488.981, -844.699 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1572.98, -1433.7 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
 [node name="TrashCan2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 457.966, -420.857 )
+position = Vector2( -702.034, -492.857 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan8" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1730.03, -531.857 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan9" parent="." instance=ExtResource( 5 )]
+position = Vector2( -2110.03, -767.857 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan10" parent="." instance=ExtResource( 5 )]
+position = Vector2( -2616.03, -747.857 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan11" parent="." instance=ExtResource( 5 )]
+position = Vector2( -2360.03, 196.143 )
 collision_layer = 7
 collision_mask = 7
 script = null
 
 [node name="TrashCan3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 666.498, 372.602 )
+position = Vector2( 819.498, 373.602 )
 collision_layer = 7
 collision_mask = 7
 script = null
@@ -246,7 +288,7 @@ texture = ExtResource( 9 )
 
 [connection signal="invert_screen_signal" from="." to="." method="_on_TestStage_invert_screen_signal"]
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
+[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
-[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
