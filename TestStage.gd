@@ -51,7 +51,6 @@ func _physics_process(delta):
 	var round_time_left = $RoundTimer.get_time_left()
 	var fraction_left = round_time_left/time_per_round
 	$Cam/CanvasLayer/Interface/TimeBar.set_value(fraction_left)
-	print(fraction_left)
 	
 	var time_left = $SoulSwitchTimer.get_time_left()
 	#print(time_left)
@@ -171,12 +170,11 @@ func playSound(sound):
 
 func evaluate_winner():
 	if score.player1 == score.player2:
-		print("tie")
+		print("Tie")
 	elif score.player1 < score.player2:
-		print("Player 2 won")
+		print("Player 2 (on the right) won")
 	else:
-		print("Player 1 won")
-	new_round()
+		print("Player 1 (on the left) won")
 
 func new_round():
 	person = "player1"
@@ -201,4 +199,5 @@ func new_round():
 
 func _on_RoundTimer_timeout():
 	evaluate_winner()
+	new_round()
 	pass # Replace with function body.
