@@ -38,8 +38,15 @@ func pull():
 		var direction = Vector2(cos(radians), sin(radians))
 		r.set_linear_velocity(direction * 40 * i)
 		print("pull")
-#	shorten(6)
-	pass
+
+func chaos():
+	for i in rope_parts.size():
+		var iHalfNegative = i - rope_parts.size()/2
+		var r = rope_parts[i]
+		var radians = r.get_rotation() + PI / 2 + PI / 20
+		var direction = Vector2(cos(radians), sin(radians))
+		r.set_linear_velocity(direction * 70 * iHalfNegative)
+		print("pull")
 
 #func shorten(amount:int):
 #	for i in amount:

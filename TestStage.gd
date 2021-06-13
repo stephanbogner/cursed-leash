@@ -111,6 +111,18 @@ func _on_SoulSwitchTimer_timeout():
 	$SoulSwitchTimer.set_wait_time(time_per_soul_switch)
 	$SoulSwitchTimer.start()
 	
+	rope.chaos()
+	#var radians = $Dog.global_position.angle_to($Person.global_position)
+	#var radiansForPerson = radians - PI / 2
+	#var directionForPerson = Vector2(cos(radiansForPerson), sin(radiansForPerson))
+	#print(radiansForPerson, " ", directionForPerson)
+	#$Person.add_central_force(directionForPerson * 400)
+	#var radians = r.get_rotation() - PI / 2
+	#var direction = Vector2(cos(radians), sin(radians))
+	#r.set_linear_velocity(direction * 40 * i)
+	
+	#$Dog.
+	
 	print("switch")
 	if person == "player1":
 		person = "player2"
