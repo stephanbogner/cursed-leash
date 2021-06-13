@@ -66,6 +66,13 @@ func _physics_process(delta):
 	motion.x = clamp(motion.x, -MAXSPEED, MAXSPEED)
 	motion.y = clamp(motion.y, -MAXSPEED, MAXSPEED)
 	
+	# If pug stand still and beast mode it boost forward once
+#	if motion_scale > 1 and motion.x < 10 and motion.y < 10:
+#
+#		var ownRotation = motion.angle() + PI / 2
+#		print(ownRotation)
+#		motion = Vector2(cos(ownRotation), sin(ownRotation)) * MAXSPEED/2
+	
 	self.set_linear_velocity(motion * motion_scale)
 	#motion = move_and_slide(motion, UP)
 

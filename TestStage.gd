@@ -43,6 +43,26 @@ var barkZips = [
 	preload("res://sounds/Bark zip 5.ogg")
 ]
 
+var soundsPerson = [
+	preload("res://sounds/Call 1.ogg"),
+	preload("res://sounds/Call 2.ogg"),
+	preload("res://sounds/Call 3.ogg"),
+	preload("res://sounds/Call 4.ogg"),
+	preload("res://sounds/Call 5.ogg"),
+	preload("res://sounds/Call 6.ogg"),
+	preload("res://sounds/Call 7.ogg"),
+]
+
+var soundsDog = [
+	preload("res://sounds/Bark 1.ogg"),
+	preload("res://sounds/Bark 2.ogg"),
+	preload("res://sounds/Bark 3.ogg"),
+	preload("res://sounds/Bark 4.ogg"),
+	preload("res://sounds/Bark 5.ogg"),
+	preload("res://sounds/Bark 6.ogg"),
+	preload("res://sounds/Bark 7.ogg"),
+]
+
 var sounds_click = [
 	preload("res://sounds/Click 1.ogg"),
 	preload("res://sounds/Click 2.ogg"),
@@ -110,7 +130,7 @@ func _physics_process(delta):
 		
 		var time_left = $SoulSwitchTimer.get_time_left()
 		
-		var length_of_switch_sound = 1.5
+		var length_of_switch_sound = 1.1
 		if time_left < length_of_switch_sound:
 			if switchSoundPlayed == false:
 				switchSoundPlayed = true
@@ -147,6 +167,12 @@ func _physics_process(delta):
 			
 		if Input.is_action_just_pressed("player2_action_primary"):
 			check_input_primary("player2")
+			
+		if Input.is_action_just_pressed("player1_action_secondary"):
+			check_input_secondary("player1")
+			
+		if Input.is_action_just_pressed("player2_action_secondary"):
+			check_input_secondary("player2")
 		
 	var person_position = Person.get_position()
 	var dog_position = Dog.get_position()
@@ -176,6 +202,14 @@ func check_input_primary(player):
 			playSound(sound_beast_mode)
 			$Dog.activate_beast_mode()
 			screenShakeAndRumble(0.05, 8, 18, 0)
+	
+func check_input_secondary(player):
+	if person == player:
+		screenShakeAndRumble(0.05, 3, 8, 0)
+		playRandomSound(soundsPerson)
+	if person != player:
+		screenShakeAndRumble(0.05, 3, 8, 0)
+		playRandomSound(soundsDog)
 	
 #func _input(event):
 #	if event is InputEventMouseButton and !event.is_pressed():
