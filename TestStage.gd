@@ -47,7 +47,7 @@ func _ready():
 	$LootDropTimer.start()
 	
 	rope = Rope.instance()
-	add_child(rope)
+	$RopeContainer.add_child(rope)
 	rope.spawn(Person, Dog)
 	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
 
@@ -116,7 +116,7 @@ func _on_SoulSwitchTimer_timeout():
 func place_loot(number_of_loot):
 	for	i in number_of_loot:
 		var collectible = Collectible.instance()
-		add_child(collectible)
+		$Poops.add_child(collectible)
 
 #func _on_LootDropTimer_timeout():
 #	var collectible = Collectible.instance()
