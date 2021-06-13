@@ -1,15 +1,15 @@
 extends RigidBody2D
 
 const UP = Vector2(0, -1)
-const ACC = 30
-const MAXSPEED = 200
+const ACC = 60
+const MAXSPEED = 250
 var motion = Vector2()
 
 var in_control = "player1"
 
 func _ready():
 	#self.set_weight(10)
-	#self.set_mass(10)
+	self.set_mass(1.8)
 	pass
 
 func _physics_process(delta):
@@ -25,7 +25,7 @@ func _physics_process(delta):
 	elif Input.is_action_pressed(in_control + "_right"):
 		motion.x += ACC
 	else:
-		motion.x = lerp(motion.x, 0, 0.2)
+		motion.x = lerp(motion.x, 0, 0.6)
 	
 	if motion.x != 0 or motion.y != 0:
 		self.rotation = motion.angle() + PI / 2
