@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://TestStage.gd" type="Script" id=1]
 [ext_resource path="res://Person.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://textures/lance-asper-JACmbnRPCu4-unsplash oilify 2 4 21 _adjusted palms.png" type="Texture" id=16]
 [ext_resource path="res://Intro.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Winner.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Bubble love poop.png" type="Texture" id=19]
+[ext_resource path="res://Bubble no poop.png" type="Texture" id=20]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -95,7 +97,7 @@ position = Vector2( 254.885, 6.2677 )
 [node name="RopeContainer" type="Node2D" parent="."]
 
 [node name="Dog" parent="." instance=ExtResource( 3 )]
-position = Vector2( 625.496, 314.519 )
+position = Vector2( 837.819, -569.492 )
 collision_layer = 2
 collision_mask = 11
 script = ExtResource( 4 )
@@ -169,7 +171,7 @@ collision_mask = 7
 script = null
 
 [node name="Person" parent="." instance=ExtResource( 2 )]
-position = Vector2( 200.653, 377.998 )
+position = Vector2( 422.073, -282.446 )
 collision_mask = 3
 script = ExtResource( 6 )
 
@@ -202,6 +204,16 @@ position = Vector2( 148.352, 224.725 )
 rotation = 0.461072
 texture = ExtResource( 11 )
 
+[node name="bubble_dog" type="Sprite" parent="."]
+position = Vector2( 320.003, -150.272 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 19 )
+
+[node name="bubble_person" type="Sprite" parent="."]
+position = Vector2( 610.888, -312.065 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 20 )
+
 [node name="Palms" type="Sprite" parent="."]
 position = Vector2( 256, 0 )
 scale = Vector2( 2, 2 )
@@ -213,6 +225,8 @@ texture = ExtResource( 16 )
 wait_time = 0.01
 autostart = true
 
+[node name="BubbleOverlayTimer" type="Timer" parent="."]
+
 [node name="Cam" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 3, 3 )
@@ -223,6 +237,7 @@ smoothing_enabled = true
 [node name="Interface" parent="Cam/CanvasLayer" instance=ExtResource( 15 )]
 
 [node name="Winner" parent="Cam/CanvasLayer" instance=ExtResource( 18 )]
+visible = false
 
 [node name="Intro" parent="Cam/CanvasLayer" instance=ExtResource( 17 )]
 
@@ -235,11 +250,14 @@ position = Vector2( 9.00704, 8.51008 )
 scale = Vector2( 629.085, 100.308 )
 texture = ExtResource( 9 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="invert_screen_signal" from="." to="." method="_on_TestStage_invert_screen_signal"]
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
-[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
+[connection signal="timeout" from="BubbleOverlayTimer" to="." method="_on_BubbleOverlayTimer_timeout"]

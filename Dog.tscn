@@ -33,6 +33,11 @@ contact_monitor = true
 [node name="C" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="head" type="Node2D" parent="C"]
+position = Vector2( 1.99186e-12, -19.8643 )
+rotation = -3.14159
+scale = Vector2( 0.190232, 0.190232 )
+
 [node name="Pug" type="Sprite" parent="C"]
 visible = false
 position = Vector2( 0, 1.01585 )
@@ -47,7 +52,6 @@ anims/Running = SubResource( 2 )
 rotation = -3.14159
 texture = ExtResource( 2 )
 hframes = 20
-frame = 19
 
 [node name="J" type="PinJoint2D" parent="C"]
 position = Vector2( 0, -8.77556 )

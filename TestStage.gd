@@ -9,7 +9,7 @@ signal invert_screen_signal
 
 var time_per_round = 60
 #var times_per_soul_switch = [14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 6, 6, 6, 6]
-var times_per_soul_switch = [14, 14, 12, 12, 4, 999]
+var times_per_soul_switch = [14, 14, 10, 10, 6, 6, 10, 10, 10, 10]
 var copy_times_per_soul_switch
 var warning_time_switch = 5
 var invert_screen = false
@@ -103,15 +103,17 @@ func interface_input():
 		$Cam/CanvasLayer/Intro.hide()
 		$Cam/CanvasLayer/Intro/Screen1.show()
 		$Cam/CanvasLayer/Intro/Screen2.show()
-		current_stage = "game"
-		new_round()
+		current_stage = "explanation"
+		updateScoreUI()
+		update_avatars()
+		showBubblesFor(10)
 	elif current_stage == "round-over":
 		current_stage = "game"
 		screenShakeAndRumble(0.3, 24, 35)
 		new_round()
 
 func _ready():
-	#new_round()
+	place_loot(200)
 	$Cam/CanvasLayer/Intro/Screen1/text/button/animpl.play("cycle")
 	$Cam/CanvasLayer/Intro/Screen2/text/button/animpl.play("cycle")
 	$Cam/CanvasLayer/Intro/Screen3/text/button/animpl.play("cycle")
@@ -122,6 +124,9 @@ func _ready():
 	#$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
 
 func _physics_process(delta):
+	$bubble_dog.position = $Dog/C/head.global_position + Vector2(-130, 60)
+	$bubble_person.position = $Person.position + Vector2(100, 40)
+	
 	if Input.is_action_just_pressed("ui_accept"):
 		interface_input()
 	
@@ -163,7 +168,7 @@ func _physics_process(delta):
 			#$Cam/ShaderGlitch.get_material().set_shader_param("shake_rate", 0.2)
 			#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
 		
-	if current_stage == "game" or current_stage == "round-over":
+	if current_stage == "game" or current_stage == "round-over" or current_stage == "explanation":
 		if Input.is_action_just_pressed("player1_action_primary"):
 			check_input_primary("player1")
 			
@@ -182,7 +187,7 @@ func _physics_process(delta):
 	Cam.global_position = position_between_players
 
 func check_input_primary(player):
-	var cost_rope_pull = 33
+	var cost_rope_pull = 66
 	var cost_beast_mode = 33
 	# If person is played by player
 	if person == player:
@@ -291,7 +296,7 @@ func _on_TestStage_invert_screen_signal(boolean):
 	else:
 		update_avatars(false)
 
-func update_avatars(inverted):
+func update_avatars(inverted = false):
 	if inverted == false:
 		$Cam/CanvasLayer/Interface/person_player1.visible = person == "player1"
 		$Cam/CanvasLayer/Interface/pug_player1.visible = person != "player1"
@@ -333,7 +338,7 @@ func evaluate_winner():
 	current_stage = "round-over"
 	$SoulSwitchTimer.stop()
 
-func new_round():
+func new_round(leaveLoot = false):
 	$Cam/CanvasLayer/Winner.hide()
 	copy_times_per_soul_switch = [] + times_per_soul_switch
 	person = "player1"
@@ -351,7 +356,9 @@ func new_round():
 	
 	updateScoreUI()
 	
-	place_loot(160)
+	if leaveLoot == false:
+		place_loot(200)
+
 	update_avatars(false)
 	
 	$RoundTimer.stop()
@@ -377,3 +384,18 @@ func _on_PowerTimer_timeout():
 	power.player2 += 0.5
 	power.player2 = min(100, power.player2)
 	updatePowerBars()
+
+func showBubblesFor(showFor):
+	$bubble_dog.show()
+	$bubble_person.show()
+	$BubbleOverlayTimer.stop()
+	$BubbleOverlayTimer.set_wait_time(showFor)
+	$BubbleOverlayTimer.one_shot = true
+	$BubbleOverlayTimer.start()
+
+func _on_BubbleOverlayTimer_timeout():
+	new_round(true)
+	$bubble_dog.hide()
+	$bubble_person.hide()
+	current_stage = "game"
+	pass # Replace with function body.
