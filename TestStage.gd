@@ -44,6 +44,7 @@ var barkZips = [
 
 var sound_zt = preload("res://sounds/Curse zt.ogg")
 var sound_switch = preload("res://sounds/Curse switch.ogg")
+var sound_beast_mode = preload("res://sounds/Bark high pitched.ogg")
 
 func _ready():
 	new_round()
@@ -59,7 +60,6 @@ func _physics_process(delta):
 	$Cam/CanvasLayer/Interface/TimeBar.set_value(fraction_left)
 	
 	var time_left = $SoulSwitchTimer.get_time_left()
-	print(time_left)
 	
 	if time_left < warning_time_switch:
 		var extra_black_screen = 0.2
@@ -87,29 +87,40 @@ func _physics_process(delta):
 		#$Cam/Shader.get_material().set_shader_param("shaderStrength", fraction)
 	
 	if Input.is_action_just_pressed("player1_action_primary"):
-		if person == "player1" and power["player1"] >= 33:
-			power["player1"] -= 33
-			rope.pull()
-			updatePowerBars()
-			#Dog.get_node("C/reaction-zip").play()
-			var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
-			playSound(selectedSound)
-			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
-			
+		check_input_primary("player1")
+		
 	if Input.is_action_just_pressed("player2_action_primary"):
-		if person == "player2" and power["player2"] >= 33:
-			power["player2"] -= 33
-			rope.pull()
-			updatePowerBars()
-			#Dog.get_node("C/reaction-zip").play()
-			var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
-			playSound(selectedSound)
-			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
+		check_input_primary("player2")
 		
 	var person_position = Person.get_position()
 	var dog_position = Dog.get_position()
 	var position_between_players = (person_position + dog_position) / 2
 	Cam.global_position = position_between_players
+
+func check_input_primary(player):
+	var cost_rope_pull = 33
+	var cost_beast_mode = 33
+	# If person is played by player
+	if person == player:
+		print("check for human action")
+		if power[player] >= cost_rope_pull:
+			power[player] -= cost_rope_pull
+			rope.pull()
+			updatePowerBars()
+			var selectedSound = barkZips[randi() % (barkZips.size() - 1)] # Via https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html#getting-a-random-number
+			playSound(selectedSound)
+			Cam.get_node("ScreenShake").start(0.05, 15, 24, 0)
+	
+	# If person is not played by player -> dog
+	if person != player:
+		print("check for dog action")
+		if power[player] >= cost_beast_mode:
+			power[player] -= cost_beast_mode
+			updatePowerBars()
+			playSound(sound_beast_mode)
+			$Dog.activate_beast_mode()
+			Cam.get_node("ScreenShake").start(0.05, 8, 18, 0)
+	
 #func _input(event):
 #	if event is InputEventMouseButton and !event.is_pressed():
 #		if start_pos == Vector2.ZERO:
@@ -123,6 +134,7 @@ func _physics_process(delta):
 #			end_pos = Vector2.ZERO
 
 func updatePowerBars():
+	print(power)
 	$Cam/CanvasLayer/Interface/Power_player1.set_value(power.player1)
 	$Cam/CanvasLayer/Interface/Power_player2.set_value(power.player2)
 
@@ -226,8 +238,8 @@ func new_round():
 	}
 	
 	power = {
-		"player1": 100,
-		"player2": 100
+		"player1": 100.0,
+		"player2": 100.0
 	}
 	updatePowerBars()
 	
@@ -257,5 +269,5 @@ func _on_PowerTimer_timeout():
 	power.player1 += 0.5
 	power.player1 = min(100, power.player1)
 	power.player2 += 0.5
-	power.player2 = min(100, power.player1)
+	power.player2 = min(100, power.player2)
 	updatePowerBars()

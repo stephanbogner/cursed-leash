@@ -67,11 +67,13 @@ __meta__ = {
 }
 
 [node name="Bubble love poop" type="Sprite" parent="."]
+visible = false
 position = Vector2( 252.351, 55.2162 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="Bubble no poop" type="Sprite" parent="."]
+visible = false
 position = Vector2( 63.6058, 49.1688 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 3 )
