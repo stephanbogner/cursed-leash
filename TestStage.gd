@@ -7,7 +7,8 @@ extends Node2D
 
 signal invert_screen_signal
 
-var time_per_round = 60
+var time_per_round = 40
+var time_per_soul_switch = 20
 var warning_time_switch = 5
 var invert_screen = false
 var Collectible = preload("res://Collectible.tscn")
@@ -39,19 +40,12 @@ var sound_zt = preload("res://sounds/Curse zt.ogg")
 var sound_switch = preload("res://sounds/Curse switch.ogg")
 
 func _ready():
-	place_loot(160)
-	update_avatars(false)
-	$RoundTimer.set_wait_time(time_per_round)
-	$RoundTimer.one_shot = true
-	$RoundTimer.start()
-	
-	$SoulSwitchTimer.set_wait_time(30)
-	$SoulSwitchTimer.start()
+	new_round()
 	
 	rope = Rope.instance()
 	$RopeContainer.add_child(rope)
 	rope.spawn(Person, Dog)
-	$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
+	#$Cam/ShaderColor.get_material().set_shader_param("intensity", 0)
 
 func _physics_process(delta):
 	var round_time_left = $RoundTimer.get_time_left()
@@ -121,6 +115,9 @@ func _on_SoulSwitchTimer_timeout():
 	pass # Replace with function body.
 
 func place_loot(number_of_loot):
+	for n in $Poops.get_children():
+		n.queue_free()
+	
 	for	i in number_of_loot:
 		var collectible = Collectible.instance()
 		$Poops.add_child(collectible)
@@ -171,3 +168,37 @@ func playSound(sound):
 	ztPlayer.play()
 	yield(ztPlayer, "finished") #Via https://godotengine.org/qa/67049/help-with-audiostreamplayer
 	ztPlayer.queue_free()
+
+func evaluate_winner():
+	if score.player1 == score.player2:
+		print("tie")
+	elif score.player1 < score.player2:
+		print("Player 2 won")
+	else:
+		print("Player 1 won")
+	new_round()
+
+func new_round():
+	person = "player1"
+	
+	score = {
+		"player1": 0,
+		"player2": 0
+	}
+	updateScoreUI()
+	
+	place_loot(160)
+	update_avatars(false)
+	
+	$RoundTimer.stop()
+	$RoundTimer.set_wait_time(time_per_round)
+	$RoundTimer.one_shot = true
+	$RoundTimer.start()
+	
+	$SoulSwitchTimer.stop()
+	$SoulSwitchTimer.set_wait_time(time_per_soul_switch)
+	$SoulSwitchTimer.start()
+
+func _on_RoundTimer_timeout():
+	evaluate_winner()
+	pass # Replace with function body.
