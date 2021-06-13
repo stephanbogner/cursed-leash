@@ -179,27 +179,31 @@ script = ExtResource( 6 )
 
 [node name="LootDropTimer" type="Timer" parent="."]
 
-[node name="SportsCar" type="Sprite" parent="."]
+[node name="Cars" type="Node2D" parent="."]
+visible = false
+
+[node name="SportsCar" type="Sprite" parent="Cars"]
 position = Vector2( 315.009, 1321.47 )
-rotation = -3.20269
+rotation = 3.0805
+scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 
-[node name="Taxi" type="Sprite" parent="."]
+[node name="Taxi" type="Sprite" parent="Cars"]
 position = Vector2( -366.522, -376.35 )
 rotation = -1.75625
 texture = ExtResource( 14 )
 
-[node name="NormalCar2" type="Sprite" parent="."]
+[node name="NormalCar2" type="Sprite" parent="Cars"]
 position = Vector2( 1920.31, 136.28 )
-rotation = 4.96659
+rotation = -1.3166
 texture = ExtResource( 12 )
 
-[node name="SUV" type="Sprite" parent="."]
+[node name="SUV" type="Sprite" parent="Cars"]
 position = Vector2( 1221.27, -540.944 )
 rotation = 2.65071
 texture = ExtResource( 10 )
 
-[node name="Cop" type="Sprite" parent="."]
+[node name="Cop" type="Sprite" parent="Cars"]
 position = Vector2( 148.352, 224.725 )
 rotation = 0.461072
 texture = ExtResource( 11 )
@@ -257,6 +261,7 @@ texture = ExtResource( 9 )
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
+[connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
