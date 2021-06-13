@@ -6,6 +6,7 @@ extends Node2D
 # Layer 4 Poop
 
 signal invert_screen_signal
+signal change_player
 
 var time_per_round = 60
 #var times_per_soul_switch = [14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 6, 6, 6, 6]
@@ -260,7 +261,7 @@ func _on_SoulSwitchTimer_timeout():
 		person = "player2"
 	else:
 		person = "player1"
-	update_avatars(false)
+	update_avatars()
 	emit_signal("invert_screen_signal", false)
 	pass # Replace with function body.
 
@@ -297,7 +298,7 @@ func _on_TestStage_invert_screen_signal(boolean):
 		playSound(sound_zt)
 		screenShakeAndRumble(0.05, 18, 33, 0)
 	else:
-		update_avatars(false)
+		update_avatars()
 
 func update_avatars(inverted = false):
 	if inverted == false:
@@ -346,6 +347,7 @@ func new_round(leaveLoot = false):
 	$Cam/CanvasLayer/Winner.hide()
 	copy_times_per_soul_switch = [] + times_per_soul_switch
 	person = "player1"
+	emit_signal("change_player", person)
 	
 	score = {
 		"player1": 0,
@@ -357,13 +359,12 @@ func new_round(leaveLoot = false):
 		"player2": 100.0
 	}
 	updatePowerBars()
-	
 	updateScoreUI()
 	
 	if leaveLoot == false:
 		place_loot(200)
 
-	update_avatars(false)
+	update_avatars()
 	
 	$RoundTimer.stop()
 	$RoundTimer.set_wait_time(time_per_round)

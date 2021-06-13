@@ -97,3 +97,10 @@ func _on_SoulSwitchTimer_timeout():
 		in_control = "player1"
 	else:
 		in_control = "player2"
+
+
+func _on_TestStage_change_player(person):
+	if person == "player1":
+		in_control = "player2"
+	else:
+		in_control = "player1"
