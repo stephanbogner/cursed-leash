@@ -130,6 +130,24 @@ collision_layer = 7
 collision_mask = 7
 script = null
 
+[node name="TrashCan12" parent="TrashCans" instance=ExtResource( 5 )]
+position = Vector2( 1076.98, -1673.7 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan16" parent="TrashCans" instance=ExtResource( 5 )]
+position = Vector2( 924.98, -1345.7 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan13" parent="TrashCans" instance=ExtResource( 5 )]
+position = Vector2( 1031.98, -1663.7 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
 [node name="TrashCan2" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( -702.034, -492.857 )
 collision_layer = 7
@@ -162,6 +180,18 @@ script = null
 
 [node name="TrashCan3" parent="TrashCans" instance=ExtResource( 5 )]
 position = Vector2( 819.498, 373.602 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan14" parent="TrashCans" instance=ExtResource( 5 )]
+position = Vector2( 715.498, 1445.6 )
+collision_layer = 7
+collision_mask = 7
+script = null
+
+[node name="TrashCan15" parent="TrashCans" instance=ExtResource( 5 )]
+position = Vector2( 821.498, 1955.6 )
 collision_layer = 7
 collision_mask = 7
 script = null
@@ -266,9 +296,9 @@ volume_db = -5.346
 
 [connection signal="invert_screen_signal" from="." to="." method="_on_TestStage_invert_screen_signal"]
 [connection signal="scored" from="Dog" to="." method="_on_Dog_scored"]
+[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Dog" method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="SoulSwitchTimer" to="Person" method="_on_SoulSwitchTimer_timeout"]
-[connection signal="timeout" from="SoulSwitchTimer" to="." method="_on_SoulSwitchTimer_timeout"]
 [connection signal="timeout" from="LootDropTimer" to="." method="_on_LootDropTimer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
