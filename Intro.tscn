@@ -102,7 +102,6 @@ position = Vector2( 244.092, 157.252 )
 scale = Vector2( 0.220197, 0.220197 )
 texture = ExtResource( 6 )
 hframes = 4
-frame = 3
 
 [node name="animpl" type="AnimationPlayer" parent="Screen3/text/button"]
 anims/cycle = SubResource( 1 )
@@ -124,11 +123,10 @@ __meta__ = {
 }
 
 [node name="button" type="Sprite" parent="Screen2/text"]
-position = Vector2( 242.377, 147.329 )
+position = Vector2( 202.377, 147.329 )
 scale = Vector2( 0.215848, 0.215848 )
 texture = ExtResource( 5 )
 hframes = 4
-frame = 2
 
 [node name="animpl" type="AnimationPlayer" parent="Screen2/text/button"]
 anims/cycle = SubResource( 2 )
